@@ -1,6 +1,6 @@
 
 ANDROID_ALL_JARS = [
-    "@org_robolectric_android_all_P_robolectric_4651975//jar",
+    "@org_robolectric_android_all_9_robolectric_4799589//jar",
     "@org_robolectric_android_all_8_1_0_robolectric_4611349//jar",
     "@org_robolectric_android_all_8_0_0_r4_robolectric_r1//jar",
     "@org_robolectric_android_all_7_1_0_r7_robolectric_r1//jar",
@@ -32,7 +32,6 @@ java_library(
     "@com_google_guava_guava//jar",
     "@com_google_protobuf_protobuf_java//jar",
     "@com_ibm_icu_icu4j//jar",
-    "@com_thoughtworks_xstream_xstream//jar",
     "@junit_junit//jar",
     "@nekohtml_nekohtml//jar",
     "@nekohtml_xercesMinimal//jar",
@@ -69,7 +68,6 @@ java_library(
     "@org_robolectric_shadowapi//jar",
     "@org_robolectric_shadows_framework//jar",
     "@org_robolectric_utils//jar",
-    "@xmlpull_xmlpull//jar",
     "@xpp3_xpp3_min//jar",
   ],
   visibility = ["//visibility:public"],
