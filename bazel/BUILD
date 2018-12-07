@@ -32,7 +32,6 @@ java_library(
     "@com_google_guava_guava//jar",
     "@com_google_protobuf_protobuf_java//jar",
     "@com_ibm_icu_icu4j//jar",
-    "@junit_junit//jar",
     "@nekohtml_nekohtml//jar",
     "@nekohtml_xercesMinimal//jar",
     "@org_apache_ant_ant_launcher//jar",
@@ -68,7 +67,6 @@ java_library(
     "@org_robolectric_shadowapi//jar",
     "@org_robolectric_shadows_framework//jar",
     "@org_robolectric_utils//jar",
-    "@xpp3_xpp3_min//jar",
   ],
   visibility = ["//visibility:public"],
 )

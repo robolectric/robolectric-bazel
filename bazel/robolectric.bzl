@@ -507,6 +507,13 @@ def generated_maven_jars():
       sha1 = "81089716c38250441358df5ec862b604b0009d1f",
   )
 
+  native.maven_jar(
+        name = "nekohtml_nekohtml",
+        artifact = "nekohtml:nekohtml:1.9.6.2",
+        sha1 = "2d960be7b62ae6622dbbbe49ab4ffdc609f85c80",
+        repository = "http://central.maven.org/maven2/",
+    )
+
 
 def robolectric_repositories():
     android_all_jars()
