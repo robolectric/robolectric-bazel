@@ -36,7 +36,8 @@ maven_install(
 ```
 
 Then, in your `android_local_test` targets in the BUILD files, depend on the
-Robolectric targets:
+Robolectric targets `@maven//:org_robolectric_robolectric` and
+`@robolectric//bazel:android-all`:
 
 ```python
 android_local_test(
