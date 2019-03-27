@@ -5,8 +5,6 @@ projects.
 
 ## Usage
 
-### After v4.0.1
-
 Add the `robolectric` and `rules_jvm_external` repositories in your WORKSPACE file:
 
 ```python
@@ -26,7 +24,7 @@ http_archive(
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
     artifacts = [
-        "org.robolectric:robolectric:4.2",
+        "org.robolectric:robolectric:4.1",
     ],
     repositories = [
         "https://maven.google.com",
@@ -52,25 +50,3 @@ android_local_test(
     ],
 )
 ```
-
-### Before v4.0.1
-
-See [Robolectric Getting
-Started](http://robolectric.org/getting-started/#building-with-bazel) for usage
-instructions.
-
-To update BUILD, and robolectric.bazel for a new version of Robolectric use
-[bazel's generate
-workspace](https://docs.bazel.build/versions/master/generate-workspace.html)
-tool.
-
-```bash
- bazel run //generate_workspace -- \
-    --artifact=org.robolectric:robolectric:4.0.2 \
-    --repositories=https://central.maven.org/maven2 \
-    --repositories=https://jcenter.bintray.com \
-    --repositories=https://maven.google.com
-```
-
-Copy the generated_maven_jars() function from the generated
-generate_workspace.bzl to robolectric.bzl.
