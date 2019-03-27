@@ -1,4 +1,3 @@
-
 ANDROID_ALL_JARS = [
     "@org_robolectric_android_all_9_robolectric_4913185_2//jar",
     "@org_robolectric_android_all_8_1_0_robolectric_4611349//jar",
@@ -14,67 +13,11 @@ ANDROID_ALL_JARS = [
     "@org_robolectric_android_all_4_1_2_r1_robolectric_r1//jar",
 ]
 
-
-java_library(
-  name = "robolectric",
-  exports = [":robolectric-itself", ":android-all-jars"],
-  data = [":robolectric-deps.properties"],
-  visibility = ["//visibility:public"],
-)
-
-java_library(
-  name = 'robolectric-itself',
-  exports = [
-    "@backport_util_concurrent_backport_util_concurrent//jar",
-    "@classworlds_classworlds//jar",
-    "@com_almworks_sqlite4java_sqlite4java//jar",
-    "@com_google_android_apps_common_testing_accessibility_framework_accessibility_test_framework//jar",
-    "@com_google_guava_guava//jar",
-    "@com_google_protobuf_protobuf_java//jar",
-    "@com_ibm_icu_icu4j//jar",
-    "@nekohtml_nekohtml//jar",
-    "@nekohtml_xercesMinimal//jar",
-    "@org_apache_ant_ant_launcher//jar",
-    "@org_apache_ant_ant//jar",
-    "@org_apache_maven_wagon_wagon_file//jar",
-    "@org_apache_maven_wagon_wagon_http_lightweight//jar",
-    "@org_apache_maven_wagon_wagon_http_shared//jar",
-    "@org_apache_maven_wagon_wagon_provider_api//jar",
-    "@org_apache_maven_maven_ant_tasks//jar",
-    "@org_apache_maven_maven_artifact_manager//jar",
-    "@org_apache_maven_maven_artifact//jar",
-    "@org_apache_maven_maven_error_diagnostics//jar",
-    "@org_apache_maven_maven_model//jar",
-    "@org_apache_maven_maven_plugin_registry//jar",
-    "@org_apache_maven_maven_profile//jar",
-    "@org_apache_maven_maven_project//jar",
-    "@org_apache_maven_maven_repository_metadata//jar",
-    "@org_apache_maven_maven_settings//jar",
-    "@org_bouncycastle_bcprov_jdk15on//jar",
-    "@org_codehaus_plexus_plexus_container_default//jar",
-    "@org_codehaus_plexus_plexus_interpolation//jar",
-    "@org_codehaus_plexus_plexus_utils//jar",
-    "@org_hamcrest_hamcrest_core//jar",
-    "@org_hamcrest_hamcrest_library//jar",
-    "@org_ow2_asm_asm_commons//jar",
-    "@org_ow2_asm_asm_tree//jar",
-    "@org_ow2_asm_asm//jar",
-    "@org_robolectric_annotations//jar",
-    "@org_robolectric_junit//jar",
-    "@org_robolectric_resources//jar",
-    "@org_robolectric_robolectric//jar",
-    "@org_robolectric_sandbox//jar",
-    "@org_robolectric_shadowapi//jar",
-    "@org_robolectric_shadows_framework//jar",
-    "@org_robolectric_utils//jar",
-  ],
-  visibility = ["//visibility:public"],
-)
-
 java_library(
     name = "android-all",
-    srcs = [":robolectric-deps.properties"],
-    exports = [":android-all-jars"]
+    data = [":robolectric-deps.properties"],
+    exports = [":android-all-jars"],
+    visibility = ["//visibility:public"],
 )
 
 java_library(
@@ -85,7 +28,6 @@ java_library(
 filegroup(
   name = "android-all-jars-filegroup",
   srcs = ANDROID_ALL_JARS,
-  visibility = ["//visibility:public"],
 )
 
 genrule(
@@ -97,6 +39,6 @@ genrule(
 )
 
 py_binary(
-  name = "gen-deps", 
+  name = "gen-deps",
   srcs = ["gen-deps.py", ],
 )
