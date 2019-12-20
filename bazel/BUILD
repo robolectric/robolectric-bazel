@@ -1,5 +1,5 @@
 ANDROID_ALL_JARS = [
-    "@org_robolectric_android_all_10_robolectric_5803371//jar",
+    ":org_robolectric_android_all_10_robolectric_5803371_jar",
     "@org_robolectric_android_all_9_robolectric_4913185_2//jar",
     "@org_robolectric_android_all_8_1_0_robolectric_4611349//jar",
     "@org_robolectric_android_all_8_0_0_r4_robolectric_r1//jar",
@@ -13,6 +13,13 @@ ANDROID_ALL_JARS = [
     "@org_robolectric_android_all_4_2_2_r1_2_robolectric_r1//jar",
     "@org_robolectric_android_all_4_1_2_r1_robolectric_r1//jar",
 ]
+
+genrule(
+    name = "org_robolectric_android_all_10_robolectric_5803371_jar",
+    srcs = ["@org_robolectric_android_all_10_robolectric_5803371//file:downloaded"],
+    outs = ["android-all-10-robolectric-5803371.jar"],
+    cmd = "cp $< $@",
+)
 
 java_library(
     name = "android-all",
