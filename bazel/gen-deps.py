@@ -1,4 +1,5 @@
 import sys
+
 def getKey(jar):
     group_and_artifact = "org.robolectric\:android-all\:"
     # Given "external/org_robolectric_android_all_4_1_2_r1_robolectric_r1/jar/android-all-4.1.2_r1-robolectric-r1.jar"
