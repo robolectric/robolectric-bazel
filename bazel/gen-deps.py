@@ -9,9 +9,6 @@ def getKey(jar):
 def getValue(jar):
     # Given "external/org_robolectric_android_all_4_1_2_r1_robolectric_r1/jar/android-all-4.1.2_r1-robolectric-r1.jar"
     # We want "../../org_robolectric_android_all_4_1_2_r1_robolectric_r1/jar/android-all-4.1.2_r1-robolectric-r1.jar"
-    # Relative to external/robolectric/bazel
-    if jar.endswith("android-all-10-robolectric-5803371.jar"):
-        return "android-all-10-robolectric-5803371.jar"
     return "../../" + jar[jar.index("org_robolectric"):]
 
 def main(argv):
