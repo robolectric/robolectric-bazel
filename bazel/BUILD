@@ -16,8 +16,7 @@ ANDROID_ALL_JARS = [
 
 java_library(
     name = "android-all",
-    data = [":robolectric-deps.properties"],
-    exports = [":android-all-jars"],
+    data = [":robolectric-deps.properties"] + ANDROID_ALL_JARS,
     visibility = ["//visibility:public"],
 )
 
