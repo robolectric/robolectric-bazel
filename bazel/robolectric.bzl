@@ -4,7 +4,7 @@ def robolectric_repositories():
     jvm_maven_import_external(
         name = "org_robolectric_android_all_11_robolectric_6757853",
         artifact = "org.robolectric:android-all:11-robolectric-6757853",
-        server_urls = ["https://repo1.maven.org/maven2", "https://jcenter.bintray.com"],
+        server_urls = ["https://repo1.maven.org/maven2"],
         artifact_sha256 = "62f577ca49f62f0da5d6a2a839d80ef377054b9ccd14811035593bf351295b31",
         licenses = ["notice"]
     )
