@@ -10,8 +10,8 @@ Add the `robolectric` and `rules_jvm_external` repositories in your WORKSPACE fi
 ```python
 http_archive(
     name = "robolectric",
-    urls = ["https://github.com/robolectric/robolectric-bazel/archive/4.4.tar.gz"],
-    strip_prefix = "robolectric-bazel-4.4",
+    urls = ["https://github.com/robolectric/robolectric-bazel/archive/4.5.tar.gz"],
+    strip_prefix = "robolectric-bazel-4.5",
 )
 load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
 robolectric_repositories()
@@ -25,7 +25,7 @@ http_archive(
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
     artifacts = [
-        "org.robolectric:robolectric:4.4",
+        "org.robolectric:robolectric:4.5",
     ],
     repositories = [
         "https://maven.google.com",
