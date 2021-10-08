@@ -25,7 +25,7 @@ http_archive(
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
     artifacts = [
-        "org.robolectric:robolectric:4.5",
+        "org.robolectric:robolectric:4.6",
     ],
     repositories = [
         "https://maven.google.com",
