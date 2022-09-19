@@ -16,6 +16,7 @@ http_archive(
 load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
 robolectric_repositories()
 
+
 http_archive(
     name = "rules_jvm_external",
     strip_prefix = "rules_jvm_external-4.2",
