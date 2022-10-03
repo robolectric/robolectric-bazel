@@ -17,7 +17,7 @@ http_archive(
     name = "robolectric",
     urls = ["https://github.com/robolectric/robolectric-bazel/archive/4.9.tar.gz"],
     strip_prefix = "robolectric-bazel-4.9",
-    sha256 = "...",
+    sha256 = "get the sha256 from github releases",
 )
 load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
 robolectric_repositories()
