@@ -3,6 +3,11 @@
 This project provides build rules for integrating Robolectric into Bazel
 projects.
 
+##  Releases
+
+<a href="https://github.com/robolectric/robolectric-bazel/releases/latest"><img src="https://img.shields.io/github/v/release/robolectric/robolectric-bazel?display_name=tag&label=Latest%20Stable%20Release"/></a>
+<br/>
+
 ## Usage
 
 Add the `robolectric` and `rules_jvm_external` repositories in your WORKSPACE file:
