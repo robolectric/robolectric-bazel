@@ -1,4 +1,5 @@
 ANDROID_ALL_JARS = [
+    "@org_robolectric_android_all_instrumented_13_robolectric_9030017_i4//jar",
     "@org_robolectric_android_all_instrumented_12.1_robolectric_8229987_i4//jar",
     "@org_robolectric_android_all_instrumented_12_robolectric_7732740_i4//jar",
     "@org_robolectric_android_all_instrumented_11_robolectric_6757853_i4//jar",
@@ -25,23 +26,23 @@ java_library(
 
 java_library(
     name = "android-all-jars",
-    exports = ANDROID_ALL_JARS
+    exports = ANDROID_ALL_JARS,
 )
 
 filegroup(
-  name = "android-all-jars-filegroup",
-  srcs = ANDROID_ALL_JARS,
+    name = "android-all-jars-filegroup",
+    srcs = ANDROID_ALL_JARS,
 )
 
 genrule(
-  name = "properties",
-  srcs = [":android-all-jars-filegroup"],
-  outs = ["robolectric-deps.properties"],
-  tools = [":gen-deps"],
-  cmd = "$(location :gen-deps) $(locations :android-all-jars-filegroup) > $@",
+    name = "properties",
+    srcs = [":android-all-jars-filegroup"],
+    outs = ["robolectric-deps.properties"],
+    cmd = "$(location :gen-deps) $(locations :android-all-jars-filegroup) > $@",
+    tools = [":gen-deps"],
 )
 
 py_binary(
-  name = "gen-deps",
-  srcs = ["gen-deps.py", ],
+    name = "gen-deps",
+    srcs = ["gen-deps.py"],
 )

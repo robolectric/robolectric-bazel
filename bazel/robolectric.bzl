@@ -2,6 +2,14 @@ load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 
 def robolectric_repositories():
     jvm_maven_import_external(
+        name = "org_robolectric_android_all_instrumented_13_robolectric_9030017_i4",
+        artifact = "org.robolectric:android-all-instrumented:13-robolectric-9030017-i4",
+        server_urls = ["https://repo1.maven.org/maven2"],
+        artifact_sha256 = "12464e78dbbaf28680d6c8584e60bc069254866d92dffa426714cbcf4f7bf487",
+        licenses = ["notice"],
+    )
+
+    jvm_maven_import_external(
         name = "org_robolectric_android_all_instrumented_12.1_robolectric_8229987_i4",
         artifact = "org.robolectric:android-all-instrumented:12.1-robolectric-8229987-i4",
         server_urls = ["https://repo1.maven.org/maven2"],
@@ -73,7 +81,6 @@ def robolectric_repositories():
         licenses = ["notice"],
     )
 
-
     jvm_maven_import_external(
         name = "org_robolectric_android_all_instrumented_6_0_1_r3_robolectric_r1_i4",
         artifact = "org.robolectric:android-all-instrumented:6.0.1_r3-robolectric-r1-i4",
@@ -89,7 +96,6 @@ def robolectric_repositories():
         artifact_sha256 = "165a408aaafd7a36a5fb6509decb63083583d7d20448afafca702980fa529bff",
         licenses = ["notice"],
     )
-
 
     jvm_maven_import_external(
         name = "org_robolectric_android_all_instrumented_5_0_2_r3_robolectric_r0_i4",
