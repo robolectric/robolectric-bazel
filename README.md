@@ -25,9 +25,9 @@ robolectric_repositories()
 
 http_archive(
     name = "rules_jvm_external",
-    strip_prefix = "rules_jvm_external-4.4.2",
-    sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    url = "https://github.com/bazelbuild/rules_jvm_external/archive/4.4.2.zip",
+    strip_prefix = "rules_jvm_external-4.5",
+    sha256 = "b17d7388feb9bfa7f2fa09031b32707df529f26c91ab9e5d909eb1676badd9a6",
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/4.5.zip",
 )
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
