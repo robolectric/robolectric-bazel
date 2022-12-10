@@ -17,7 +17,7 @@ jobs:
           distribution: "zulu"
           java-version: "11"
       - name: "Setup Bazelisk"
-        uses: bazelbuild/setup-bazelisk@v1
+        uses: bazelbuild/setup-bazelisk@v2
       - name: "Building //bazel:android-all"
         run: bazel build //bazel:android-all
   buildifier:
@@ -31,6 +31,6 @@ jobs:
           distribution: "zulu"
           java-version: "11"
       - name: "Setup Bazelisk"
-        uses: bazelbuild/setup-bazelisk@v1
+        uses: bazelbuild/setup-bazelisk@v2
       - name: "Linting Starlark"
         run: bazel run @buildifier_prebuilt//:buildifier -- -mode check -lint warn -r .
