@@ -1,7 +1,7 @@
-"""TODO"""
+"""Default version definitions for Robolectric jars to include"""
 
 def version(name, url, sha256):
-    """Define a version of a Robolectric jar to include
+    """Define a struct representation of an instrumented Robolectric jar.
 
     Args:
         name: The name of the version
