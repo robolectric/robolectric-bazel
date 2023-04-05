@@ -33,7 +33,7 @@ jobs:
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Running integration tests"
-        working-directory: exaxmples/simple
+        working-directory: examples/simple
         run: bazel test //:SparseArraySetTest
   buildifier:
     runs-on: ubuntu-latest
