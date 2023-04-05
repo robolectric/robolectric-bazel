@@ -1,0 +1,13 @@
+load("@build_bazel_rules_android//android:rules.bzl", "android_local_test")
+
+android_local_test(
+    name = "SampleTest",
+    srcs = ["SparseArraySetTest.java"],
+    manifest = "AndroidManifest.xml",
+    test_class = "SparseArraySetTest",
+    deps = [
+        "@maven//:com_google_truth_truth",
+        "@maven//:org_robolectric_robolectric",
+        "@robolectric//bazel:android-all",
+    ],
+)
