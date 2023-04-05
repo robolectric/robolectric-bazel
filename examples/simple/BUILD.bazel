@@ -1,7 +1,7 @@
 load("@build_bazel_rules_android//android:rules.bzl", "android_local_test")
 
 android_local_test(
-    name = "SampleTest",
+    name = "SparseArraySetTest",
     srcs = ["SparseArraySetTest.java"],
     manifest = "AndroidManifest.xml",
     test_class = "SparseArraySetTest",
