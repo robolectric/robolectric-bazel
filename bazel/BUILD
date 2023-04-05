@@ -1,37 +1,21 @@
-ANDROID_ALL_JARS = [
-    "@org_robolectric_android_all_instrumented_13_robolectric_9030017_i4//jar",
-    "@org_robolectric_android_all_instrumented_12.1_robolectric_8229987_i4//jar",
-    "@org_robolectric_android_all_instrumented_12_robolectric_7732740_i4//jar",
-    "@org_robolectric_android_all_instrumented_11_robolectric_6757853_i4//jar",
-    "@org_robolectric_android_all_instrumented_10_robolectric_5803371_i4//jar",
-    "@org_robolectric_android_all_instrumented_9_robolectric_4913185_2_i4//jar",
-    "@org_robolectric_android_all_instrumented_8_1_0_robolectric_4611349_i4//jar",
-    "@org_robolectric_android_all_instrumented_8_0_0_r4_robolectric_r1_i4//jar",
-    "@org_robolectric_android_all_instrumented_7_1_0_r7_robolectric_r1_i4//jar",
-    "@org_robolectric_android_all_instrumented_7_0_0_r1_robolectric_r1_i4//jar",
-    "@org_robolectric_android_all_instrumented_6_0_1_r3_robolectric_r1_i4//jar",
-    "@org_robolectric_android_all_instrumented_5_1_1_r9_robolectric_r2_i4//jar",
-    "@org_robolectric_android_all_instrumented_5_0_2_r3_robolectric_r0_i4//jar",
-    "@org_robolectric_android_all_instrumented_4_4_r1_robolectric_r2_i4//jar",
-    "@org_robolectric_android_all_instrumented_4_3_r2_robolectric_r1_i4//jar",
-    "@org_robolectric_android_all_instrumented_4_2_2_r1_2_robolectric_r1_i4//jar",
-    "@org_robolectric_android_all_instrumented_4_1_2_r1_robolectric_r1_i4//jar",
-]
+load(":versions.bzl", _VERSIONS = "VERSIONS")
+
+_ANDROID_ALL_JARS = ["@{}//jar".format(v.name) for v in _VERSIONS]
 
 java_library(
     name = "android-all",
-    data = [":robolectric-deps.properties"] + ANDROID_ALL_JARS,
+    data = [":robolectric-deps.properties"] + _ANDROID_ALL_JARS,
     visibility = ["//visibility:public"],
 )
 
 java_library(
     name = "android-all-jars",
-    exports = ANDROID_ALL_JARS,
+    exports = _ANDROID_ALL_JARS,
 )
 
 filegroup(
     name = "android-all-jars-filegroup",
-    srcs = ANDROID_ALL_JARS,
+    srcs = _ANDROID_ALL_JARS,
 )
 
 genrule(
