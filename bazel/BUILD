@@ -1,6 +1,6 @@
-load(":versions.bzl", _VERSIONS = "VERSIONS")
+load(":robolectric.bzl", "DEFAULT_AVALIABLE_VERSIONS")
 
-_ANDROID_ALL_JARS = ["@{}//jar".format(v.name) for v in _VERSIONS]
+_ANDROID_ALL_JARS = ["@{}//jar".format(v.name) for v in DEFAULT_AVALIABLE_VERSIONS]
 
 java_library(
     name = "android-all",
