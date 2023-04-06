@@ -20,6 +20,21 @@ jobs:
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Building //bazel:android-all"
         run: bazel build //bazel:android-all
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout the sources"
+        uses: actions/checkout@v3
+      - name: "Install JDK 11"
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "11"
+      - name: "Setup Bazelisk"
+        uses: bazelbuild/setup-bazelisk@v2
+      - name: "Running integration tests"
+        working-directory: examples/simple
+        run: bazel test //:SparseArraySetTest
   buildifier:
     runs-on: ubuntu-latest
     steps:
