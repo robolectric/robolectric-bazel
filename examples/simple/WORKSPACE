@@ -9,6 +9,8 @@ local_repository(
 
 load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
 
+robolectric_repositories()
+
 http_archive(
     name = "bazel_skylib",
     sha256 = "c6966ec828da198c5d9adbaa94c05e3a1c7f21bd012a0b29ba8ddbccb2c93b0d",
@@ -18,8 +20,6 @@ http_archive(
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
-
-robolectric_repositories()
 
 http_archive(
     name = "build_bazel_rules_android",
