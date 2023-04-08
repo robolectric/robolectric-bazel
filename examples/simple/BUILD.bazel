@@ -1,4 +1,4 @@
-load("@build_bazel_rules_android//android:rules.bzl", "android_local_test")
+load("@rules_android//android:rules.bzl", "android_local_test")
 
 android_local_test(
     name = "SparseArraySetTest",

@@ -19,7 +19,9 @@ jobs:
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Building //bazel:android-all"
-        run: bazel build //bazel:android-all
+        run: bazel build //bazel:android-all --enable_bzlmod=false
+      - name: "Building //bazel:android-all with bzlmod"
+        run: bazel build //bazel:android-all --enable_bzlmod=true
   integration-tests:
     runs-on: ubuntu-latest
     steps:
