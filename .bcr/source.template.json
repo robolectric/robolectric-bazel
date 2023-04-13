@@ -1,5 +1,5 @@
 {
-  "integrity": "sha256",
+  "integrity": "",
   "strip_prefix": "robolectric-bazel-{TAG}",
   "url": "https://github.com/robolectric/robolectric-bazel/archive/{TAG}.tar.gz"
 }
