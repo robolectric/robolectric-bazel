@@ -6,4 +6,4 @@ tasks:
     name: "Verify build targets"
     platform: ${{ platform }}
     build_targets:
-      - "@robolectric//bazel:android-all"
+      - "@rules_robolectric//bazel:android-all"
