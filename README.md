@@ -15,8 +15,8 @@ Add the `robolectric` and `rules_jvm_external` repositories in your WORKSPACE fi
 ```python
 http_archive(
     name = "robolectric",
-    urls = ["https://github.com/robolectric/robolectric-bazel/archive/refs/tags/4.10.1.tar.gz"],
-    strip_prefix = "robolectric-bazel-4.10.1",
+    urls = ["https://github.com/robolectric/robolectric-bazel/archive/refs/tags/4.10.2.tar.gz"],
+    strip_prefix = "robolectric-bazel-4.10.2",
     sha256 = "get the sha256 from github releases",
 )
 load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
