@@ -7,6 +7,7 @@ module(
 bazel_dep(name = "robolectric", version = "1")
 local_path_override(module_name = "robolectric", path = "../..")
 
+bazel_dep(name = "platforms", version = "0.0.6")
 bazel_dep(name = "rules_android", version = "0.1.1")
 bazel_dep(name = "rules_jvm_external", version = "5.2")
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
@@ -21,3 +22,6 @@ maven.install(
     ],
 )
 use_repo(maven, "maven")
+
+remote_android_extensions = use_extension("@bazel_tools//tools/android:android_extensions.bzl", "remote_android_tools_extensions")
+use_repo(remote_android_extensions, "android_tools", "android_gmaven_r8")
