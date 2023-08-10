@@ -4,8 +4,8 @@ module(
 )
 
 # I don't think this bazel_dep version actually matters because it's being overriden by the local_path_override.
-bazel_dep(name = "robolectric", version = "1")
-local_path_override(module_name = "robolectric", path = "../..")
+bazel_dep(name = "rules_robolectric", repo_name = "robolectric", version = "1")
+local_path_override(module_name = "rules_robolectric", path = "../..")
 
 bazel_dep(name = "platforms", version = "0.0.6")
 bazel_dep(name = "rules_android", version = "0.1.1")
