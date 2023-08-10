@@ -34,6 +34,9 @@ jobs:
           java-version: "11"
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v2
+      - name: "Running integration tests"
+        working-directory: examples/simple
+        run: bazel test //:SparseArraySetTest --enable_bzlmod=false
       - name: "Running integration tests with bzlmod"
         working-directory: examples/simple
         run: bazel test //:SparseArraySetTest --enable_bzlmod=true
