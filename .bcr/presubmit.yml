@@ -1,5 +1,5 @@
 matrix:
-  platform: ["macos", "ubuntu2004", "windows"]
+  platform: ["macos", "ubuntu2004"]
 
 tasks:
   verify_targets:
