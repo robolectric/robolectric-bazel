@@ -3,7 +3,7 @@
 This project provides build rules for integrating Robolectric into Bazel
 projects.
 
-##  Releases
+## Releases
 
 <a href="https://github.com/robolectric/robolectric-bazel/releases/latest"><img src="https://img.shields.io/github/v/release/robolectric/robolectric-bazel?display_name=tag&label=Latest%20Stable%20Release"/></a>
 <br/>
@@ -47,7 +47,7 @@ http_archive(
     name = "rules_jvm_external",
     strip_prefix = "rules_jvm_external-5.3",
     sha256 = "d31e369b854322ca5098ea12c69d7175ded971435e55c18dd9dd5f29cc5249ac",
-    url = "https://github.com/bazelbuild/rules_jvm_external/archive/4.5.zip",
+    url = "https://github.com/bazelbuild/rules_jvm_external/releases/download/5.3/rules_jvm_external-5.3.tar.gz",
 )
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
@@ -60,7 +60,6 @@ maven_install(
     ],
 )
 ```
-
 
 ### And Finally
 
