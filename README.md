@@ -10,6 +10,27 @@ projects.
 
 ## Usage
 
+### Bzlmod (MODULE.bazel)
+
+```Python
+bazel_dep(name = "rules_robolectric", version = "4.10.3")
+
+bazel_dep(name = "rules_jvm_external", version = "5.3")
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        "org.robolectric:robolectric:4.10.3",
+    ],
+    repositories = [
+        "https://maven.google.com",
+        "https://repo1.maven.org/maven2",
+    ],
+)
+use_repo(maven, "maven")
+```
+
+### Workspace
+
 Add the `robolectric` and `rules_jvm_external` repositories in your WORKSPACE file:
 
 ```python
@@ -24,8 +45,8 @@ robolectric_repositories()
 
 http_archive(
     name = "rules_jvm_external",
-    strip_prefix = "rules_jvm_external-4.5",
-    sha256 = "b17d7388feb9bfa7f2fa09031b32707df529f26c91ab9e5d909eb1676badd9a6",
+    strip_prefix = "rules_jvm_external-5.3",
+    sha256 = "d31e369b854322ca5098ea12c69d7175ded971435e55c18dd9dd5f29cc5249ac",
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/4.5.zip",
 )
 load("@rules_jvm_external//:defs.bzl", "maven_install")
@@ -39,6 +60,9 @@ maven_install(
     ],
 )
 ```
+
+
+### And Finally
 
 Then, in your `android_local_test` targets in the BUILD files, depend on the
 Robolectric targets `@maven//:org_robolectric_robolectric` and
