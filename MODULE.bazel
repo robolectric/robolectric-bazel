@@ -27,5 +27,5 @@ use_repo(
     "org_robolectric_android_all_instrumented_4_1_2_r1_robolectric_r1_i4",
 )
 
-bazel_dep(name = "rules_java", version = "5.5.0")
-bazel_dep(name = "buildifier_prebuilt", version = "6.1.0", dev_dependency = True)
+bazel_dep(name = "rules_java", version = "7.0.6")
+bazel_dep(name = "buildifier_prebuilt", version = "6.3.3", dev_dependency = True)
