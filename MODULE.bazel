@@ -1,6 +1,6 @@
 module(
     name = "rules_robolectric",
-    version = "4.10.3",
+    version = "4.11",
     bazel_compatibility = [">=6.0.0"],
     compatibility_level = 1,
 )
@@ -8,6 +8,7 @@ module(
 robolectric_repository_extensions = use_extension("//bazel:extensions.bzl", "robolectric_repository_extensions")
 use_repo(
     robolectric_repository_extensions,
+    "org_robolectric_android_all_instrumented_14_robolectric_10818077_i4",
     "org_robolectric_android_all_instrumented_13_robolectric_9030017_i4",
     "org_robolectric_android_all_instrumented_12_1_robolectric_8229987_i4",
     "org_robolectric_android_all_instrumented_12_robolectric_7732740_i4",
