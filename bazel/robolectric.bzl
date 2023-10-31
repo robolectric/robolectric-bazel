@@ -97,5 +97,5 @@ DEFAULT_AVAILABLE_VERSIONS = [
 def robolectric_repositories():
     """Creates http_jar repositories for the given versions of Robolectric.
     """
-    for v in DEFAULT_AVALIABLE_VERSIONS:
+    for v in DEFAULT_AVAILABLE_VERSIONS:
         http_jar(name = v.name, url = v.url, downloaded_file_name = "android-all-instrumented-%s.jar" % (v.version), sha256 = v.sha256)
