@@ -1,5 +1,5 @@
 module(
-    name = "rules_robolectric",
+    name = "robolectric",
     version = "4.11",
     bazel_compatibility = [">=6.0.0"],
     compatibility_level = 1,
