@@ -11,11 +11,6 @@ jobs:
     steps:
       - name: "Checkout the sources"
         uses: actions/checkout@v4
-      - name: "Install JDK 11"
-        uses: actions/setup-java@v3
-        with:
-          distribution: "zulu"
-          java-version: "11"
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Building //bazel:android-all"
@@ -27,11 +22,6 @@ jobs:
     steps:
       - name: "Checkout the sources"
         uses: actions/checkout@v4
-      - name: "Install JDK 11"
-        uses: actions/setup-java@v3
-        with:
-          distribution: "zulu"
-          java-version: "11"
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Running integration tests"
@@ -45,11 +35,6 @@ jobs:
     steps:
       - name: "Checkout the sources"
         uses: actions/checkout@v4
-      - name: "Install JDK 11"
-        uses: actions/setup-java@v3
-        with:
-          distribution: "zulu"
-          java-version: "11"
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Linting Starlark"
