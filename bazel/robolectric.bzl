@@ -19,7 +19,11 @@ def robolectric_version(version, sha256, url = None):
         fail("sha256 must be provided for %s being downloaded from %s" % (name, url))
     return struct(name = name, version = version, url = url, sha256 = sha256)
 
-DEFAULT_AVALIABLE_VERSIONS = [
+DEFAULT_AVAILABLE_VERSIONS = [
+    robolectric_version(
+        version = "14-robolectric-10818077-i4",
+        sha256 = "a363bb010a3e81e5c45b937020b395f4db0fb00d5bc6aa44c7b5afc4d15c9c89",
+    ),
     robolectric_version(
         version = "13-robolectric-9030017-i4",
         sha256 = "12464e78dbbaf28680d6c8584e60bc069254866d92dffa426714cbcf4f7bf487",
@@ -93,5 +97,5 @@ DEFAULT_AVALIABLE_VERSIONS = [
 def robolectric_repositories():
     """Creates http_jar repositories for the given versions of Robolectric.
     """
-    for v in DEFAULT_AVALIABLE_VERSIONS:
+    for v in DEFAULT_AVAILABLE_VERSIONS:
         http_jar(name = v.name, url = v.url, downloaded_file_name = "android-all-instrumented-%s.jar" % (v.version), sha256 = v.sha256)

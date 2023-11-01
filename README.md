@@ -13,13 +13,13 @@ projects.
 ### Bzlmod (MODULE.bazel)
 
 ```Python
-bazel_dep(name = "rules_robolectric", version = "4.10.3")
+bazel_dep(name = "rules_robolectric", version = "4.11")
 
 bazel_dep(name = "rules_jvm_external", version = "5.3")
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     artifacts = [
-        "org.robolectric:robolectric:4.10.3",
+        "org.robolectric:robolectric:4.11",
     ],
     repositories = [
         "https://maven.google.com",
@@ -36,8 +36,8 @@ Add the `robolectric` and `rules_jvm_external` repositories in your WORKSPACE fi
 ```python
 http_archive(
     name = "robolectric",
-    urls = ["https://github.com/robolectric/robolectric-bazel/archive/refs/tags/4.10.3.tar.gz"],
-    strip_prefix = "robolectric-bazel-4.10.3",
+    urls = ["https://github.com/robolectric/robolectric-bazel/archive/refs/tags/4.11.tar.gz"],
+    strip_prefix = "robolectric-bazel-4.11",
     sha256 = "get the sha256 from github releases",
 )
 load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
@@ -52,7 +52,7 @@ http_archive(
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
     artifacts = [
-        "org.robolectric:robolectric:4.10.3",
+        "org.robolectric:robolectric:4.11",
     ],
     repositories = [
         "https://maven.google.com",
