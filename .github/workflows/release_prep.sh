@@ -40,7 +40,7 @@ use_repo(maven, "maven")
 
 ### Workspace
 
-Add the `robolectric` and `rules_jvm_external` repositories in your WORKSPACE file:
+Add the \`robolectric\` and \`rules_jvm_external\` repositories in your WORKSPACE file:
 
 \`\`\`starlark
 http_archive(
