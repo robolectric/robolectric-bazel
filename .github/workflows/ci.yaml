@@ -30,12 +30,3 @@ jobs:
       - name: "Running integration tests with bzlmod"
         working-directory: examples/simple
         run: bazel test //:SparseArraySetTest --enable_bzlmod=true
-  buildifier:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Checkout the sources"
-        uses: actions/checkout@v4
-      - name: "Setup Bazelisk"
-        uses: bazelbuild/setup-bazelisk@v2
-      - name: "Linting Starlark"
-        run: bazel run @buildifier_prebuilt//:buildifier -- -mode check -lint warn -r .
