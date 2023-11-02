@@ -8,7 +8,7 @@ readonly TAG=${GITHUB_REF_NAME}
 # The prefix is chosen to match what GitHub generates for source archives.
 # This guarantees that users can easily switch from a released artifact to a source archive
 # with minimal differences in their code (e.g. strip_prefix remains the same)
-readonly PREFIX="robolectric-bazel-${TAG}"
+readonly PREFIX="rules_robolectric-${TAG}"
 readonly ARCHIVE="${PREFIX}.tar.gz"
 
 # NB: configuration for 'git archive' is in /.gitattributes

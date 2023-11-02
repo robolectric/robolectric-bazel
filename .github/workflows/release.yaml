@@ -15,4 +15,4 @@ jobs:
     uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v5
     with:
       prerelease: false
-      release_files: robolectric-bazel-*.tar.gz
+      release_files: rules_robolectric-*.tar.gz
