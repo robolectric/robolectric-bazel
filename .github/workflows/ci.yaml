@@ -56,4 +56,4 @@ jobs:
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Running integration tests"
         working-directory: examples/simple
-        run: bazel --bazelrc=.github/workflows/ci.bazelrc test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }}
+        run: bazel --bazelrc=../../.github/workflows/ci.bazelrc test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }}
