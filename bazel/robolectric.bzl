@@ -1,3 +1,6 @@
+"""Robolectric repositories
+"""
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar")
 
 def robolectric_version(version, sha256, url = None):
@@ -8,6 +11,9 @@ def robolectric_version(version, sha256, url = None):
         sha256: The sha256 of the downloaded instrumented jar
         url: The URL of the jar to download. If no URL is provided a default one will be used substituting
             in the provided version.
+
+    Returns:
+        A struct containing the name, version, url, and sha256
     """
     if not version:
         fail("version must be provided!")
