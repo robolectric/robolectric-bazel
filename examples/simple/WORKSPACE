@@ -7,10 +7,6 @@ local_repository(
     path = "../../",
 )
 
-load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
-
-robolectric_repositories()
-
 http_archive(
     name = "bazel_skylib",
     sha256 = "c6966ec828da198c5d9adbaa94c05e3a1c7f21bd012a0b29ba8ddbccb2c93b0d",
@@ -31,6 +27,11 @@ http_archive(
 load("@rules_android//android:rules.bzl", "android_sdk_repository")
 
 android_sdk_repository(name = "androidsdk")
+
+#---SNIP--- Below here is re-used in the workspace snippet published on releases
+load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
+
+robolectric_repositories()
 
 http_archive(
     name = "rules_jvm_external",
