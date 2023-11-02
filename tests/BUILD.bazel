@@ -1,0 +1,11 @@
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+
+build_test(
+    name = "test",
+    targets = [
+        "//bazel:android-all",
+        "//bazel:android-all-jars",
+        "//bazel:properties",
+        "//bazel:gen-deps",
+    ],
+)
