@@ -35,7 +35,7 @@ jobs:
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Building //bazel:android-all"
-        run: bazel build //bazel:android-all --enable_bzlmod=${{ matrix.bzlmod }} --bazelrc=.github/workflows/ci.bazelrc
+        run: bazel --bazelrc=.github/workflows/ci.bazelrc build //bazel:android-all --enable_bzlmod=${{ matrix.bzlmod }}
   integration-tests:
     strategy:
       matrix:
@@ -56,4 +56,4 @@ jobs:
         uses: bazelbuild/setup-bazelisk@v2
       - name: "Running integration tests"
         working-directory: examples/simple
-        run: bazel test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }} --bazelrc=.github/workflows/ci.bazelrc
+        run: bazel --bazelrc=.github/workflows/ci.bazelrc test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }}
