@@ -1,5 +1,11 @@
 load(":robolectric.bzl", "DEFAULT_AVAILABLE_VERSIONS")
 
+package(
+    default_visibility = [
+        "//tests:__subpackages__",
+    ],
+)
+
 _ANDROID_ALL_JARS = ["@{}//jar".format(v.name) for v in DEFAULT_AVAILABLE_VERSIONS]
 
 java_library(
