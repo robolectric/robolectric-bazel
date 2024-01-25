@@ -30,6 +30,7 @@ genrule(
     outs = ["robolectric-deps.properties"],
     cmd = "$(location :gen-deps) $(locations :android-all-jars-filegroup) > $@",
     tools = [":gen-deps"],
+    visibility = ["//visibility:public"],
 )
 
 py_binary(
