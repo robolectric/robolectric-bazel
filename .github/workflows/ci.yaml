@@ -33,7 +33,7 @@ jobs:
           key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel') }}
           restore-keys: bazel-cache-
       - name: "Setup Bazelisk"
-        uses: bazelbuild/setup-bazelisk@v2
+        uses: bazelbuild/setup-bazelisk@v3
       - name: "Building //bazel:android-all"
         run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc build //bazel:android-all --enable_bzlmod=${{ matrix.bzlmod }}
   integration-tests:
@@ -53,7 +53,7 @@ jobs:
           key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel') }}
           restore-keys: bazel-cache-
       - name: "Setup Bazelisk"
-        uses: bazelbuild/setup-bazelisk@v2
+        uses: bazelbuild/setup-bazelisk@v3
       - name: "Running integration tests"
         working-directory: examples/simple
         run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }}
