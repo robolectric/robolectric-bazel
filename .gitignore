@@ -179,5 +179,8 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
+# Bazel files
+MODULE.bazel.lock
+
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,bazel
 
