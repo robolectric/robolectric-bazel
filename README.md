@@ -32,3 +32,15 @@ android_local_test(
     ],
 )
 ```
+
+## Publishing Releases
+
+A new release can be published by just pushing a tag.
+
+Once the tag is pushed, GitHub Actions will build, test, and publish a release to both GitHub releases and the BCR.
+
+Example:
+```console
+git tag 4.11.1
+git push origin 4.11.1
+```
