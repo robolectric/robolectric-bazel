@@ -8,6 +8,7 @@ on:
       # Note that we don't use a "v" prefix to help anchor this pattern.
       # This is purely a matter of preference.
       - "*.*.*"
+      - "*.*"
 
 jobs:
   release:
