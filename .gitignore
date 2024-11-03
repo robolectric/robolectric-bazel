@@ -181,6 +181,7 @@ fabric.properties
 
 # Bazel files
 MODULE.bazel.lock
+bazel-*/
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,bazel
 
