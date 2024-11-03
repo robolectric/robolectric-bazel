@@ -27,64 +27,64 @@ def robolectric_version(version, sha256, url = None):
 
 DEFAULT_AVAILABLE_VERSIONS = [
     robolectric_version(
-        version = "14-robolectric-10818077-i6",
-        sha256 = "7d7c075c4194778786c3e00e7aaa4f44feb6a5be68c0b194f5043a762c3f0927",
+        version = "15-robolectric-12543294-i7",
+        sha256 = "b124512494458c464b4dc707db1a9d5b9b24fb9397653c1eaa965da5e85bb619",
     ),
     robolectric_version(
-        version = "13-robolectric-9030017-i6",
-        sha256 = "3e2bd0be7324958905b55658098120b461ace976de1af3e242890782970e766c",
+        version = "14-robolectric-10818077-i7",
+        sha256 = "3fdac2d463f431c6b8d83b9d0ca739e795de75fffedee648c6761bd4bd864701",
     ),
     robolectric_version(
-        version = "12.1-robolectric-8229987-i6",
-        sha256 = "999396577199d705d28a26d42a411addb87cbf01b1c909ae6d85dcc59763ab2b",
+        version = "13-robolectric-9030017-i7",
+        sha256 = "1c3fd182c03d47626686ca3b39c4ec5bdb0898b1056f4eb8f96f32c6209a5c04",
     ),
     robolectric_version(
-        version = "12-robolectric-7732740-i6",
-        sha256 = "282e3130e90b7e292a8e9cb1d771f67715ea8906ab4dbf84385ff32c504aec0f",
+        version = "12.1-robolectric-8229987-i7",
+        sha256 = "4bcf8fde62de31d0c6d6b98bd667abc9da526d46848d31284b5238ca6192c3ca",
     ),
     robolectric_version(
-        version = "11-robolectric-6757853-i6",
-        sha256 = "18ec8d885595364f4e24ac9ac376e6a777121ba76d48be673560b5ae088c98ad",
+        version = "12-robolectric-7732740-i7",
+        sha256 = "ee2dbe28bfe63ddce34a2d631c6168c131f78a4cb58caeb4d832988e936760cb",
     ),
     robolectric_version(
-        version = "10-robolectric-5803371-i6",
-        sha256 = "3be5f1a35a0e1e378907f0052635bb831efa51253ace37954e10b34e68207a00",
+        version = "11-robolectric-6757853-i7",
+        sha256 = "7f4accae465a47e75e7591877b98e71fb982a908cffc4ba4b3ca0319cb6a0a10",
     ),
     robolectric_version(
-        version = "9-robolectric-4913185-2-i6",
-        sha256 = "20c7c3d1dba85bbc96ffdfabf2e3eefbdad455927691e4897096125d09bf58ea",
+        version = "10-robolectric-5803371-i7",
+        sha256 = "700fb3bb88ff346969b955241b86d2f55d395488bf5df1e8eddfbd003980c78a",
     ),
     robolectric_version(
-        version = "8.1.0-robolectric-4611349-i6",
-        sha256 = "c069698a2df8978f95d817632e84127b58559772af4e84ec27c1cc7a664ff533",
+        version = "9-robolectric-4913185-2-i7",
+        sha256 = "dbb1c88987b54cef3132695a1b4d2f4851ba06286a6fa7d15772f98fd1f0cdf7",
     ),
     robolectric_version(
-        version = "8.0.0_r4-robolectric-r1-i6",
-        sha256 = "97d48d8eec2aef188b03aa7dccd09350a70f54c01914f9115caf542d21f5f52c",
+        version = "8.1.0-robolectric-4611349-i7",
+        sha256 = "9aa87154e4b464edd7bd4f7f8870402599a2d90c14c660ed6907d42c7410e05f",
     ),
     robolectric_version(
-        version = "7.1.0_r7-robolectric-r1-i6",
-        sha256 = "4562790521a1cd36c3cb1d94b2869e116eb785e38b288204b9d4d308738570a6",
+        version = "8.0.0_r4-robolectric-r1-i7",
+        sha256 = "712196356bf61fbcb186f41135c33e6d3416be31543d7be120a33bc898cc1208",
     ),
     robolectric_version(
-        version = "7.0.0_r1-robolectric-r1-i6",
-        sha256 = "6f3c7970ed2249419080760feb9db10437d1d95b9cfd41319fb0f3abd399225f",
+        version = "7.1.0_r7-robolectric-r1-i7",
+        sha256 = "435b1e65810c49198f2456afcb4709b16f98c43ab36f0a2957dfb0fbec7df7ec",
     ),
     robolectric_version(
-        version = "6.0.1_r3-robolectric-r1-i6",
-        sha256 = "afcafc1dec9fda3162a079683ac7d2f031b64e71c4c805dce482046beed4c52c",
+        version = "7.0.0_r1-robolectric-r1-i7",
+        sha256 = "57dc8d57a5d69adacf3aa4306aefbf147bd1621da347e20f3cf1f41c88a5dd49",
     ),
     robolectric_version(
-        version = "5.1.1_r9-robolectric-r2-i6",
-        sha256 = "e8d934df3670a99baeee3258c90399dde16174154fbba916a0d64c4eb7a5822e",
+        version = "6.0.1_r3-robolectric-r1-i7",
+        sha256 = "bc9148d548ce6875f0df9aadb0535ef2e3a5a8cf385f47a5c6c4060a7aab4e75",
     ),
     robolectric_version(
-        version = "5.0.2_r3-robolectric-r0-i6",
-        sha256 = "c3dc0f55896d26916157ea30c8886cfad6d091e3c8408e9edb46e124b1256c0d",
+        version = "5.1.1_r9-robolectric-r2-i7",
+        sha256 = "f70b53f48ea81939afccb4f6611ca2f97b8574191a898367411ce73726ca32d7",
     ),
     robolectric_version(
-        version = "4.4_r1-robolectric-r2-i6",
-        sha256 = "7a5f15d34caec9a957c6e7b03d2cbd16645c3ce78024f3d38cbc2288724c2522",
+        version = "5.0.2_r3-robolectric-r0-i7",
+        sha256 = "a75483f03034182858b621164cf84baa9746d83782a3dcfd6bbefde78fd74478",
     ),
 ]
 
