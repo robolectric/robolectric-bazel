@@ -27,8 +27,8 @@ def robolectric_version(version, sha256, url = None):
 
 DEFAULT_AVAILABLE_VERSIONS = [
     robolectric_version(
-        version = "15-robolectric-12543294-i7",
-        sha256 = "b124512494458c464b4dc707db1a9d5b9b24fb9397653c1eaa965da5e85bb619",
+        version = "15-robolectric-12650502-i7",
+        sha256 = "33c2d7cc4186d4605269d5d411fa1818972c5b30a9f70bfbbd3d430b076af52f",
     ),
     robolectric_version(
         version = "14-robolectric-10818077-i7",
