@@ -1,7 +1,7 @@
 """Robolectric repositories
 """
 
-load("@rules_java//java:http_jar.bzl", "http_jar")
+load("//bazel/java:http_jar.bzl", "http_jar")
 
 def robolectric_version(version, sha256, url = None):
     """Define a struct representation of an instrumented Robolectric jar.
