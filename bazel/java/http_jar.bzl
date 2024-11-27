@@ -123,7 +123,7 @@ def _http_jar_impl(ctx):
         integrity = ctx.attr.integrity,
     )
     ctx.file("jar/BUILD", _HTTP_JAR_BUILD.format(
-        java_import_bzl = str(Label("//java:java_import.bzl")),
+        java_import_bzl = str(Label("@rules_java//java:java_import.bzl")),
         file_name = downloaded_file_name,
     ))
 
