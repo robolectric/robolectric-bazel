@@ -28,6 +28,7 @@ load("@rules_android//android:rules.bzl", "android_sdk_repository")
 
 android_sdk_repository(name = "androidsdk")
 
+#---SNIP--- Below here is re-used in the workspace snippet published on releases
 http_archive(
     name = "rules_java",
     sha256 = "8475fae7a95463a4fd323a46b0f5601f89863ba019afa358cc9fa1d0e67cdd63",
