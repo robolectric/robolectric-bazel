@@ -28,7 +28,8 @@ use_repo(
     "org_robolectric_android_all_instrumented_9_robolectric_4913185_2_i7",
 )
 
-bazel_dep(name = "rules_java", version = "7.0.6")
+bazel_dep(name = "rules_java", version = "7.12.2")
 bazel_dep(name = "bazel_skylib", version = "1.6.1")
+bazel_dep(name = "rules_python", version = "0.37.2")
 
 bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)

@@ -1,3 +1,5 @@
+load("@rules_java//java:java_library.bzl", "java_library")
+load("@rules_python//python:py_binary.bzl", "py_binary")
 load(":robolectric.bzl", "DEFAULT_AVAILABLE_VERSIONS")
 
 package(
