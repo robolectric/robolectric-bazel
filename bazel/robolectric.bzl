@@ -1,7 +1,7 @@
 """Robolectric repositories
 """
 
-load("@rules_java//java:http_jar.bzl", "http_jar")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
 
 def robolectric_version(version, sha256, url = None):
     """Define a struct representation of an instrumented Robolectric jar.
@@ -92,4 +92,4 @@ def robolectric_repositories():
     """Creates http_jar repositories for the given versions of Robolectric.
     """
     for v in DEFAULT_AVAILABLE_VERSIONS:
-        http_jar(name = v.name, url = v.url, downloaded_file_name = "android-all-instrumented-%s.jar" % (v.version), sha256 = v.sha256)
+        http_file(name = v.name, url = v.url, downloaded_file_path = "android-all-instrumented-%s.jar" % (v.version), sha256 = v.sha256)
