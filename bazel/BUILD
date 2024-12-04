@@ -1,3 +1,4 @@
+load("@rules_java//java:java_import.bzl", "java_import")
 load("@rules_java//java:java_library.bzl", "java_library")
 load("@rules_python//python:py_binary.bzl", "py_binary")
 load(":robolectric.bzl", "DEFAULT_AVAILABLE_VERSIONS")
@@ -8,7 +9,19 @@ package(
     ],
 )
 
-_ANDROID_ALL_JARS = ["@{}//jar".format(v.name) for v in DEFAULT_AVAILABLE_VERSIONS]
+[
+    java_import(
+        name = "import_" + v.name,
+        jars = ["@{}//file".format(v.name)],
+        visibility = [
+            ":__pkg__",
+            "//tests:__subpackages__",
+        ],
+    )
+    for v in DEFAULT_AVAILABLE_VERSIONS
+]
+
+_ANDROID_ALL_JARS = ["import_{}".format(v.name) for v in DEFAULT_AVAILABLE_VERSIONS]
 
 java_library(
     name = "android-all",
