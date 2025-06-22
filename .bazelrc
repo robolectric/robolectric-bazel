@@ -1,3 +1,7 @@
 common --enable_bzlmod
+# Enable WORKSPACE
+# TODO: Remove --enable_workspace after all dependencies are migrated to MODULE.bazel
+# See https://github.com/bazelbuild/bazel/issues/23023
+common --enable_workspace
 # Android SDK 34 requires Java 17
 common --java_runtime_version=17

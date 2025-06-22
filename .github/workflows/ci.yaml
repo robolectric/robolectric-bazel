@@ -40,7 +40,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-2022, macos-13]
-        bazel: [6.5.0, 7.4.1, 8.0.0rc7]
+        bazel: [6.5.0, 7.4.1, 8.2.1]
         bzlmod: [ true, false ]
     runs-on: ${{ matrix.os }}
     steps:
