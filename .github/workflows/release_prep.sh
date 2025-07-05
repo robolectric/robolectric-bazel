@@ -24,7 +24,7 @@ cat << EOF
 \`\`\`starlark
 bazel_dep(name = "rules_robolectric", version = "${TAG}")
 
-bazel_dep(name = "rules_jvm_external", version = "5.3")
+bazel_dep(name = "rules_jvm_external", version = "6.7")
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     artifacts = [
