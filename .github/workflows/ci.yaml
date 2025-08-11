@@ -24,7 +24,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: "Checkout the sources"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Mount bazel caches
         uses: actions/cache@v4
         with:
@@ -45,7 +45,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: "Checkout the sources"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Mount bazel caches
         uses: actions/cache@v4
         with:
