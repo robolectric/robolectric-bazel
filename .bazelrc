@@ -4,4 +4,4 @@ common --enable_bzlmod
 # See https://github.com/bazelbuild/bazel/issues/23023
 common --enable_workspace
 # Android SDK 34 requires Java 17
-common --java_runtime_version=17
+common --java_runtime_version=21
