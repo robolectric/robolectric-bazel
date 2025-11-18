@@ -19,7 +19,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-2022, macos-13]
+        os: [ubuntu-latest, windows-2022, macos-14]
         bzlmod: [true, false]
     runs-on: ${{ matrix.os }}
     steps:
@@ -39,7 +39,7 @@ jobs:
   integration-tests:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-2022, macos-13]
+        os: [ubuntu-latest, windows-2022, macos-14]
         bazel: [6.5.0, 7.4.1, 8.2.1]
         bzlmod: [ true, false ]
     runs-on: ${{ matrix.os }}
