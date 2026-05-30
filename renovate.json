@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "dependencyDashboard": true,
+  "enabledManagers": [
+    "bazel",
+    "bazel-module",
+    "bazelisk"
+  ],
+  "packageRules": [
+    {
+      "description": "Use Maven versioning for Maven coordinates declared from Bazel files.",
+      "matchDatasources": [
+        "maven"
+      ],
+      "matchManagers": [
+        "bazel",
+        "bazel-module"
+      ],
+      "versioning": "maven"
+    }
+  ]
+}
