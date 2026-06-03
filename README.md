@@ -33,6 +33,18 @@ android_local_test(
 )
 ```
 
+## Updating Android Versions
+
+`update-versions.py` walks `org.robolectric:android-all-instrumented` on Maven
+Central and rewrites `bazel/robolectric.bzl` in place: it bumps the version and
+sha256 of any Android API group that has a newer release, and inserts new
+entries for any numeric API newer than the highest one currently listed.
+
+```console
+./update-versions.py            # apply updates
+./update-versions.py --dry-run  # preview without writing
+```
+
 ## Publishing Releases
 
 A new release can be published by just pushing a tag.
