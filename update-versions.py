@@ -36,7 +36,7 @@ ENTRY_RE = re.compile(
     r'(?P<head>robolectric_version\(\s*\n\s*version\s*=\s*")'
     r'(?P<version>[^"]+)'
     r'(?P<mid>"\s*,\s*\n\s*sha256\s*=\s*")'
-    r'(?P<sha>[0-9a-fA-F]+)'
+    r"(?P<sha>[0-9a-fA-F]+)"
     r'(?P<tail>")'
 )
 
@@ -104,12 +104,20 @@ def sha256_for(version: str) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Update DEFAULT_AVAILABLE_VERSIONS in robolectric.bzl.")
+        description="Update DEFAULT_AVAILABLE_VERSIONS in robolectric.bzl."
+    )
     default_bzl = Path(__file__).resolve().parent / "bazel" / "robolectric.bzl"
-    parser.add_argument("--bzl", type=Path, default=default_bzl,
-                        help=f"path to robolectric.bzl (default: {default_bzl})")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="print planned changes without writing the file")
+    parser.add_argument(
+        "--bzl",
+        type=Path,
+        default=default_bzl,
+        help=f"path to robolectric.bzl (default: {default_bzl})",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="print planned changes without writing the file",
+    )
     args = parser.parse_args()
 
     text = args.bzl.read_text()
@@ -158,10 +166,7 @@ def main() -> int:
             continue
         additions.append((key, api, version))
     additions.sort(reverse=True)
-    additions = [
-        (api, version, sha256_for(version))
-        for _, api, version in additions
-    ]
+    additions = [(api, version, sha256_for(version)) for _, api, version in additions]
     for api, version, _ in additions:
         print(f"[ new] {api}: {version}", file=sys.stderr)
 
@@ -172,18 +177,17 @@ def main() -> int:
     new_text = text
     for m, new_version, new_sha in reversed(updates):
         replacement = (
-            f"{m.group('head')}{new_version}"
-            f"{m.group('mid')}{new_sha}{m.group('tail')}"
+            f"{m.group('head')}{new_version}{m.group('mid')}{new_sha}{m.group('tail')}"
         )
-        new_text = new_text[: m.start()] + replacement + new_text[m.end():]
+        new_text = new_text[: m.start()] + replacement + new_text[m.end() :]
 
     if additions:
         insertion = "".join(
-            f'robolectric_version(\n'
+            f"robolectric_version(\n"
             f'        version = "{v}",\n'
             f'        sha256 = "{s}",\n'
-            f'    ),\n'
-            f'    '
+            f"    ),\n"
+            f"    "
             for _, v, s in additions
         )
         insert_at = entries[0].start()
