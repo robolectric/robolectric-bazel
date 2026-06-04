@@ -16,7 +16,7 @@ Legacy r-suffixed APIs (e.g. 4.4_r1) that are not already present are never
 auto-added; removal is treated as intentional.
 
 Usage:
-    ./update-versions.py [--bzl PATH] [--dry-run]
+    bazel run //:update-versions -- [--bzl PATH] [--dry-run]
 """
 
 from __future__ import annotations
