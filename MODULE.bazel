@@ -31,6 +31,6 @@ use_repo(
 
 bazel_dep(name = "rules_java", version = "8.6.0")
 bazel_dep(name = "bazel_skylib", version = "1.6.1")
-bazel_dep(name = "rules_python", version = "0.37.2")
+bazel_dep(name = "rules_python", version = "2.0.2")
 
 bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
