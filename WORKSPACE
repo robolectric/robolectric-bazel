@@ -41,9 +41,9 @@ bazel_skylib_workspace()
 
 http_archive(
     name = "buildifier_prebuilt",
-    sha256 = "8ada9d88e51ebf5a1fdff37d75ed41d51f5e677cdbeafb0a22dda54747d6e07e",
-    strip_prefix = "buildifier-prebuilt-6.4.0",
-    url = "http://github.com/keith/buildifier-prebuilt/archive/6.4.0.tar.gz",
+    sha256 = "478f8a4b40af0ffd09e4823062a0ea28fda4247236f1059324b783202e0dd4d4",
+    strip_prefix = "buildifier-prebuilt-8.5.1",
+    url = "http://github.com/keith/buildifier-prebuilt/archive/8.5.1.tar.gz",
 )
 
 load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
