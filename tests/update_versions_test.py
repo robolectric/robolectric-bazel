@@ -151,9 +151,12 @@ class EndToEndTest(unittest.TestCase):
             f.write(bzl_text)
             bzl_path = Path(f.name)
         try:
-            with mock.patch.object(update_versions, "fetch", side_effect=_fake_fetch), \
-                 mock.patch.object(sys, "argv",
-                                   ["update-versions.py", "--bzl", str(bzl_path)]):
+            with (
+                mock.patch.object(update_versions, "fetch", side_effect=_fake_fetch),
+                mock.patch.object(
+                    sys, "argv", ["update-versions.py", "--bzl", str(bzl_path)]
+                ),
+            ):
                 rc = update_versions.main()
             return rc, bzl_path.read_text()
         finally:
@@ -165,26 +168,26 @@ class EndToEndTest(unittest.TestCase):
 
         # API 16 inserted at the top with the correct sha and indentation.
         self.assertIn(
-            '    robolectric_version(\n'
+            "    robolectric_version(\n"
             '        version = "16-robolectric-13921718-i7",\n'
             f'        sha256 = "{"b" * 64}",\n'
-            '    ),\n',
+            "    ),\n",
             result,
         )
         # API 15 rewritten in place with the new build + sha.
         self.assertIn(
-            '    robolectric_version(\n'
+            "    robolectric_version(\n"
             '        version = "15-robolectric-13954326-i7",\n'
             f'        sha256 = "{"a" * 64}",\n'
-            '    ),\n',
+            "    ),\n",
             result,
         )
         # Legacy 5.0.2_r3 untouched.
         self.assertIn(
-            '    robolectric_version(\n'
+            "    robolectric_version(\n"
             '        version = "5.0.2_r3-robolectric-r0-i7",\n'
             '        sha256 = "1111111111111111111111111111111111111111111111111111111111111111",\n'
-            '    ),\n',
+            "    ),\n",
             result,
         )
         # Stale 15 build is gone.
@@ -196,20 +199,20 @@ class EndToEndTest(unittest.TestCase):
 
     def test_no_op_when_already_current(self):
         already_current = (
-            'DEFAULT_AVAILABLE_VERSIONS = [\n'
-            '    robolectric_version(\n'
+            "DEFAULT_AVAILABLE_VERSIONS = [\n"
+            "    robolectric_version(\n"
             '        version = "16-robolectric-13921718-i7",\n'
             f'        sha256 = "{"b" * 64}",\n'
-            '    ),\n'
-            '    robolectric_version(\n'
+            "    ),\n"
+            "    robolectric_version(\n"
             '        version = "15-robolectric-13954326-i7",\n'
             f'        sha256 = "{"a" * 64}",\n'
-            '    ),\n'
-            '    robolectric_version(\n'
+            "    ),\n"
+            "    robolectric_version(\n"
             '        version = "5.0.2_r3-robolectric-r0-i7",\n'
             '        sha256 = "1111111111111111111111111111111111111111111111111111111111111111",\n'
-            '    ),\n'
-            ']\n'
+            "    ),\n"
+            "]\n"
         )
         rc, result = self._run_main(already_current)
         self.assertEqual(rc, 0)
@@ -220,10 +223,14 @@ class EndToEndTest(unittest.TestCase):
             f.write(_BZL_FIXTURE)
             bzl_path = Path(f.name)
         try:
-            with mock.patch.object(update_versions, "fetch", side_effect=_fake_fetch), \
-                 mock.patch.object(
-                     sys, "argv",
-                     ["update-versions.py", "--bzl", str(bzl_path), "--dry-run"]):
+            with (
+                mock.patch.object(update_versions, "fetch", side_effect=_fake_fetch),
+                mock.patch.object(
+                    sys,
+                    "argv",
+                    ["update-versions.py", "--bzl", str(bzl_path), "--dry-run"],
+                ),
+            ):
                 rc = update_versions.main()
             self.assertEqual(rc, 0)
             self.assertEqual(bzl_path.read_text(), _BZL_FIXTURE)
