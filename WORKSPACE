@@ -41,9 +41,9 @@ bazel_skylib_workspace()
 
 http_archive(
     name = "buildifier_prebuilt",
-    sha256 = "8ada9d88e51ebf5a1fdff37d75ed41d51f5e677cdbeafb0a22dda54747d6e07e",
-    strip_prefix = "buildifier-prebuilt-6.4.0",
-    url = "http://github.com/keith/buildifier-prebuilt/archive/6.4.0.tar.gz",
+    sha256 = "478f8a4b40af0ffd09e4823062a0ea28fda4247236f1059324b783202e0dd4d4",
+    strip_prefix = "buildifier-prebuilt-8.5.1",
+    url = "http://github.com/keith/buildifier-prebuilt/archive/8.5.1.tar.gz",
 )
 
 load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
@@ -56,9 +56,9 @@ buildifier_prebuilt_register_toolchains()
 
 http_archive(
     name = "rules_python",
-    sha256 = "c6fb25d0ba0246f6d5bd820dd0b2e66b339ccc510242fd4956b9a639b548d113",
-    strip_prefix = "rules_python-0.37.2",
-    url = "https://github.com/bazelbuild/rules_python/releases/download/0.37.2/rules_python-0.37.2.tar.gz",
+    sha256 = "690e0141724abb568267e003c7b6d9a54925df40c275a870a4d934161dc9dd53",
+    strip_prefix = "rules_python-0.40.0",
+    url = "https://github.com/bazelbuild/rules_python/releases/download/0.40.0/rules_python-0.40.0.tar.gz",
 )
 
 load("@rules_python//python:repositories.bzl", "py_repositories")
