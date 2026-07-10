@@ -53,3 +53,15 @@ EOF
 
 awk 'f;/--SNIP--/{f=1}' examples/simple/WORKSPACE
 echo "\`\`\`"
+
+cat << 'EOF'
+
+> [!NOTE]
+> **Bazel 8 in WORKSPACE mode:** `rules_java` 8.x pulls in `@bazel_features`, which
+> trips an autoload cycle under Bazel 8's default `--incompatible_autoload_externally`.
+> Add the following to your `.bazelrc` (it is a no-op on Bazel 7 and Bazel 9):
+>
+> ```
+> common --repositories_without_autoloads=bazel_features_globals,bazel_features_version
+> ```
+EOF
