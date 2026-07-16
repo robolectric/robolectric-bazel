@@ -30,7 +30,7 @@ use_repo(
     "org_robolectric_android_all_instrumented_9_robolectric_4913185_2_i7",
 )
 
-bazel_dep(name = "rules_java", version = "8.6.0")
+bazel_dep(name = "rules_java", version = "9.7.0")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "rules_python", version = "0.40.0")
 
