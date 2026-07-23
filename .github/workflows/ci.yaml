@@ -21,9 +21,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-2022, macos-14]
         mode:
-          - bazel: 9.1.0
+          - bazel: "9.x"
             bzlmod: true
-          - bazel: 8.2.1
+          - bazel: "8.x"
             bzlmod: false
     runs-on: ${{ matrix.os }}
     env:
@@ -57,10 +57,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-2022, macos-14]
-        bazel: [7.4.1, 9.1.0]
+        bazel: ["7.x", "8.x", "9.x"]
         bzlmod: [ true, false ]
         exclude:
-          - bazel: 9.1.0
+          - bazel: "9.x"
             bzlmod: false
     runs-on: ${{ matrix.os }}
     env:
