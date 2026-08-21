@@ -43,6 +43,16 @@ jobs:
         uses: bazelbuild/setup-bazelisk@v3
       - name: "Building //bazel:android-all"
         run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc build //bazel:android-all --enable_bzlmod=${{ matrix.mode.bzlmod }} --enable_workspace=${{ ! matrix.mode.bzlmod }}
+      - name: Verify MODULE.bazel.lock is unchanged
+        if: always()
+        shell: bash
+        run: |
+          if [[ -n "$(git status --porcelain -- MODULE.bazel.lock)" ]]; then
+            git diff -- MODULE.bazel.lock
+            git diff --cached -- MODULE.bazel.lock
+            echo "::error file=MODULE.bazel.lock::MODULE.bazel.lock changed during CI. Run Bazel locally and commit the updated lockfile."
+            exit 1
+          fi
   integration-tests:
     strategy:
       matrix:

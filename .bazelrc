@@ -5,3 +5,4 @@ common --enable_bzlmod
 common --enable_workspace
 # Android SDK 36 requires Java 21
 common --java_runtime_version=21
+common --repo_env=ACCEPTED_ANDROID_SDK_LICENSE_VERSION=37.0

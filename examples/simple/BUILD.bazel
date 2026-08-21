@@ -4,6 +4,7 @@ android_local_test(
     name = "SparseArraySetTest",
     srcs = ["SparseArraySetTest.java"],
     custom_package = "org.robolectric.integrationtests.sparsearray",
+    jvm_flags = ["--add-exports=java.base/jdk.internal.access=ALL-UNNAMED"],
     test_class = "org.robolectric.integrationtests.sparsearray.SparseArraySetTest",
     deps = [
         "@maven//:com_google_truth_truth",
