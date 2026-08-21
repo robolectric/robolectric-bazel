@@ -38,7 +38,7 @@ jobs:
           cache-save: true
           disk-cache: true
       - name: "Building //bazel:android-all"
-        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc build //bazel:android-all --enable_bzlmod=${{ matrix.mode.bzlmod }} --enable_workspace=${{ ! matrix.mode.bzlmod }}
+        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc ${{ runner.os == 'Windows' && '--windows_enable_symlinks' || '' }} build //bazel:android-all --enable_bzlmod=${{ matrix.mode.bzlmod }} --enable_workspace=${{ ! matrix.mode.bzlmod }} ${{ runner.os == 'Windows' && '--config=windows' || '' }}
       - name: Verify MODULE.bazel.lock is unchanged
         if: always()
         shell: bash
@@ -72,4 +72,4 @@ jobs:
           disk-cache: true
       - name: "Running integration tests"
         working-directory: examples/simple
-        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }} --enable_workspace=${{ ! matrix.bzlmod }} ${{ runner.os == 'Windows' && ! matrix.bzlmod && '--config=windows_legacy_external_runfiles' || '' }}
+        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc ${{ runner.os == 'Windows' && '--windows_enable_symlinks' || '' }} test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }} --enable_workspace=${{ ! matrix.bzlmod }} ${{ runner.os == 'Windows' && '--config=windows' || '' }} ${{ runner.os == 'Windows' && ! matrix.bzlmod && '--config=windows_legacy_external_runfiles' || '' }}
