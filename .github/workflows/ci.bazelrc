@@ -16,6 +16,7 @@ test --test_output=errors
 # Allows tests to run bazelisk-in-bazel, since this is the cache folder used
 test --test_env=XDG_CACHE_HOME
 
-# Bazel's Windows test launchers need legacy external runfiles to resolve
-# external tools such as the remote JDK.
-common:windows --legacy_external_runfiles
+# Bazel 7's Windows test launcher needs legacy external runfiles to resolve
+# the remote JDK; newer Bzlmod builds use runfiles paths that are incompatible
+# with this legacy mode.
+common:windows_legacy_external_runfiles --legacy_external_runfiles
