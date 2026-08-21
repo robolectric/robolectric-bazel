@@ -31,16 +31,12 @@ jobs:
     steps:
       - name: "Checkout the sources"
         uses: actions/checkout@v7
-      - name: Mount bazel caches
-        uses: actions/cache@v6
+      - name: "Setup Bazel"
+        uses: bazel-contrib/setup-bazel@0.19.0
         with:
-          path: |
-            ~/.cache/bazel
-            ~/.cache/bazel-disk-cache
-          key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel') }}
-          restore-keys: bazel-cache-
-      - name: "Setup Bazelisk"
-        uses: bazelbuild/setup-bazelisk@v3
+          bazelisk-cache: true
+          cache-save: true
+          disk-cache: true
       - name: "Building //bazel:android-all"
         run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc build //bazel:android-all --enable_bzlmod=${{ matrix.mode.bzlmod }} --enable_workspace=${{ ! matrix.mode.bzlmod }}
       - name: Verify MODULE.bazel.lock is unchanged
@@ -68,16 +64,12 @@ jobs:
     steps:
       - name: "Checkout the sources"
         uses: actions/checkout@v7
-      - name: Mount bazel caches
-        uses: actions/cache@v6
+      - name: "Setup Bazel"
+        uses: bazel-contrib/setup-bazel@0.19.0
         with:
-          path: |
-            ~/.cache/bazel
-            ~/.cache/bazel-disk-cache
-          key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel') }}
-          restore-keys: bazel-cache-
-      - name: "Setup Bazelisk"
-        uses: bazelbuild/setup-bazelisk@v3
+          bazelisk-cache: true
+          cache-save: true
+          disk-cache: true
       - name: "Running integration tests"
         working-directory: examples/simple
         run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }} --enable_workspace=${{ ! matrix.bzlmod }}
