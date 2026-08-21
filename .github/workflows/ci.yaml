@@ -58,10 +58,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-2022, macos-14]
         bazel: [8.4.2, 9.1.0]
-        bzlmod: [ true, false ]
-        exclude:
-          - bazel: 9.1.0
-            bzlmod: false
+        bzlmod: [ true ]
     runs-on: ${{ matrix.os }}
     env:
       USE_BAZEL_VERSION: ${{ matrix.bazel }}
