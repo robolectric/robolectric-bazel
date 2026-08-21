@@ -18,8 +18,3 @@ test --test_env=XDG_CACHE_HOME
 
 # rules_android invokes its Windows sh_binary tools through their runfiles tree.
 common:windows --enable_runfiles
-
-# Bazel 7's Windows test launcher needs legacy external runfiles to resolve
-# the remote JDK; newer Bzlmod builds use runfiles paths that are incompatible
-# with this legacy mode.
-common:windows_legacy_external_runfiles --legacy_external_runfiles

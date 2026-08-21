@@ -20,14 +20,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-2022, macos-14]
-        mode:
-          - bazel: 9.1.0
-            bzlmod: true
-          - bazel: 8.2.1
-            bzlmod: false
+        bazel: [8.2.1, 9.1.0]
     runs-on: ${{ matrix.os }}
     env:
-      USE_BAZEL_VERSION: ${{ matrix.mode.bazel }}
+      USE_BAZEL_VERSION: ${{ matrix.bazel }}
     steps:
       - name: "Checkout the sources"
         uses: actions/checkout@v7
@@ -38,7 +34,7 @@ jobs:
           cache-save: true
           disk-cache: true
       - name: "Building //bazel:android-all"
-        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc ${{ runner.os == 'Windows' && '--windows_enable_symlinks' || '' }} build //bazel:android-all --enable_bzlmod=${{ matrix.mode.bzlmod }} --enable_workspace=${{ ! matrix.mode.bzlmod }} ${{ runner.os == 'Windows' && '--config=windows' || '' }}
+        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc ${{ runner.os == 'Windows' && '--windows_enable_symlinks' || '' }} build //bazel:android-all ${{ runner.os == 'Windows' && '--config=windows' || '' }}
       - name: Verify MODULE.bazel.lock is unchanged
         if: always()
         shell: bash
@@ -54,10 +50,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-2022, macos-14]
         bazel: [7.4.1, 9.1.0]
-        bzlmod: [ true, false ]
-        exclude:
-          - bazel: 9.1.0
-            bzlmod: false
     runs-on: ${{ matrix.os }}
     env:
       USE_BAZEL_VERSION: ${{ matrix.bazel }}
@@ -72,4 +64,4 @@ jobs:
           disk-cache: true
       - name: "Running integration tests"
         working-directory: examples/simple
-        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc ${{ runner.os == 'Windows' && '--windows_enable_symlinks' || '' }} test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }} --enable_workspace=${{ ! matrix.bzlmod }} ${{ runner.os == 'Windows' && '--config=windows' || '' }} ${{ runner.os == 'Windows' && ! matrix.bzlmod && '--config=windows_legacy_external_runfiles' || '' }}
+        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc ${{ runner.os == 'Windows' && '--windows_enable_symlinks' || '' }} test //:SparseArraySetTest ${{ runner.os == 'Windows' && '--config=windows' || '' }}
