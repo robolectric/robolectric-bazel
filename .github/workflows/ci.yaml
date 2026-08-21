@@ -20,14 +20,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-2022, macos-14]
-        mode:
-          - bazel: 9.1.0
-            bzlmod: true
-          - bazel: 8.2.1
-            bzlmod: false
+        bazel: [8.7.0, 9.2.0]
     runs-on: ${{ matrix.os }}
     env:
-      USE_BAZEL_VERSION: ${{ matrix.mode.bazel }}
+      USE_BAZEL_VERSION: ${{ matrix.bazel }}
     steps:
       - name: "Checkout the sources"
         uses: actions/checkout@v7
@@ -37,12 +33,12 @@ jobs:
           path: |
             ~/.cache/bazel
             ~/.cache/bazel-disk-cache
-          key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel') }}
+          key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl') }}
           restore-keys: bazel-cache-
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v3
       - name: "Building //bazel:android-all"
-        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc build //bazel:android-all --enable_bzlmod=${{ matrix.mode.bzlmod }} --enable_workspace=${{ ! matrix.mode.bzlmod }}
+        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc build //bazel:android-all
       - name: Verify MODULE.bazel.lock is unchanged
         if: always()
         shell: bash
@@ -57,7 +53,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-2022, macos-14]
-        bazel: [8.4.2, 9.1.0]
+        bazel: [8.7.0, 9.2.0]
         bzlmod: [ true ]
     runs-on: ${{ matrix.os }}
     env:
@@ -71,10 +67,10 @@ jobs:
           path: |
             ~/.cache/bazel
             ~/.cache/bazel-disk-cache
-          key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel') }}
+          key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl') }}
           restore-keys: bazel-cache-
       - name: "Setup Bazelisk"
         uses: bazelbuild/setup-bazelisk@v3
       - name: "Running integration tests"
         working-directory: examples/simple
-        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc test //:SparseArraySetTest --enable_bzlmod=${{ matrix.bzlmod }} --enable_workspace=${{ ! matrix.bzlmod }}
+        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc test //:SparseArraySetTest
