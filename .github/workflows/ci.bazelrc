@@ -18,3 +18,7 @@ test --test_env=XDG_CACHE_HOME
 
 # rules_android invokes its Windows sh_binary tools through their runfiles tree.
 common:windows --enable_runfiles
+
+# rules_android's Starlark android_local_test launcher is a Bash script without
+# a Windows executable extension; run it through Bash for Bazel's test wrapper.
+test:windows --run_under=bash
