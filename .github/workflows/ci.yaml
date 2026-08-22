@@ -34,7 +34,7 @@ jobs:
           cache-save: true
           disk-cache: true
       - name: "Building //bazel:android-all"
-        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc build //bazel:android-all
+        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc ${{ runner.os == 'Windows' && '--windows_enable_symlinks' || '' }} build //bazel:android-all ${{ runner.os == 'Windows' && '--config=windows' || '' }}
       - name: Verify MODULE.bazel.lock is unchanged
         if: always()
         shell: bash
@@ -65,4 +65,4 @@ jobs:
           disk-cache: true
       - name: "Running integration tests"
         working-directory: examples/simple
-        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc test //:SparseArraySetTest
+        run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc ${{ runner.os == 'Windows' && '--windows_enable_symlinks' || '' }} test //:SparseArraySetTest ${{ runner.os == 'Windows' && '--config=windows' || '' }}
