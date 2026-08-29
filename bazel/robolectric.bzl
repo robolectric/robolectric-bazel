@@ -86,14 +86,6 @@ DEFAULT_AVAILABLE_VERSIONS = [
         version = "6.0.1_r3-robolectric-r1-i7",
         sha256 = "bc9148d548ce6875f0df9aadb0535ef2e3a5a8cf385f47a5c6c4060a7aab4e75",
     ),
-    robolectric_version(
-        version = "5.1.1_r9-robolectric-r2-i7",
-        sha256 = "f70b53f48ea81939afccb4f6611ca2f97b8574191a898367411ce73726ca32d7",
-    ),
-    robolectric_version(
-        version = "5.0.2_r3-robolectric-r0-i7",
-        sha256 = "a75483f03034182858b621164cf84baa9746d83782a3dcfd6bbefde78fd74478",
-    ),
 ]
 
 def robolectric_repositories():
