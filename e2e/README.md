@@ -8,7 +8,6 @@ The root `.bazelignore` excludes them; run Bazel inside each module:
 ```sh
 (cd e2e/smoke && bazel test //...)
 (cd e2e/subset && bazel test //...)
-(cd e2e/empty && bazel test //...)
 ```
 
 - `smoke`: no configuration includes every catalog runtime, even when a dependency
@@ -21,9 +20,6 @@ The root `.bazelignore` excludes them; run Bazel inside each module:
   Also defines independent Android 14 and Android 15 repositories, checks their
   exact contents, and runs an Android test against each generated library and
   properties file in the same Bazel invocation.
-- `empty`: explicitly selects no runtimes and still builds valid empty properties.
-  Its `android_local_test` asserts that requesting SDK 34 fails with the specific
-  missing-runtime error, since no Android runtime is available.
 - `dependency`: a fixture used by smoke and subset; its configuration must be ignored.
 
 Every consumer tests the exact runtime jar names in `android-all`'s `DefaultInfo`
@@ -32,9 +28,7 @@ resolves to an existing jar in the test's runfiles. The subset's expected list i
 independent of the configuration, so adding or dropping a requested runtime fails.
 
 CI runs these modules on Linux and macOS with Bazel 8.7 and 9.2, alongside the
-existing default rules_android example. The subset and empty modules override
-excluded runtimes with a repository rule that fails if fetched. This checks lazy
-fetching through Bazel itself and works even with a warm repository cache.
+existing default rules_android example.
 
 `bazel test //tests:repository_setup_tests` in the root module checks unknown
 versions and duplicate configuration with Skylib's `analysistest` and
