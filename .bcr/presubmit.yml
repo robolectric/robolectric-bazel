@@ -9,3 +9,16 @@ tasks:
     bazel: ${{ bazel }}
     build_targets:
       - "@rules_robolectric//bazel:android-all"
+
+bcr_test_module:
+  module_path: "e2e/smoke"
+  matrix:
+    platform: ["macos", "ubuntu2004"]
+    bazel: ["8.x", "9.x"]
+  tasks:
+    run_tests:
+      name: "Run smoke tests as a consumer module"
+      platform: ${{ platform }}
+      bazel: ${{ bazel }}
+      test_targets:
+        - "//..."
