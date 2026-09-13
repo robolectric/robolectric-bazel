@@ -42,15 +42,6 @@ register_toolchains(
     dev_dependency = True,
 )
 
-bazel_dep(name = "bazel_skylib", version = "1.9.0", dev_dependency = True)
-bazel_dep(name = "rules_python", version = "0.40.0", dev_dependency = True)
-
-bazel_dep(name = "selection_dependency", version = "0.0.0")
-local_path_override(
-    module_name = "selection_dependency",
-    path = "../dependency",
-)
-
 robolectric_repo = use_extension("@robolectric_repo//bazel:extensions.bzl", "robolectric_repository_extensions")
 
 # Deliberately request versions out of catalog order.

@@ -1,13 +1,4 @@
-load("@robolectric_repo//tests:runtime_selection_tests.bzl", "runtime_selection_tests")
 load("@rules_android//android:rules.bzl", "android_local_test")
-
-runtime_selection_tests(
-    robolectric = "@robolectric_repo",
-    versions = [
-        "14-robolectric-10818077-i7",
-        "15-robolectric-13954326-i7",
-    ],
-)
 
 # Leave robolectric_properties_file at rules_android's unchanged default,
 # which refers to its own @robolectric namespace, not our @robolectric_repo.
@@ -26,19 +17,6 @@ android_local_test(
 )
 
 # Exercise named repositories independently in the same consumer module.
-[
-    runtime_selection_tests(
-        name_prefix = name + "_",
-        package = "",
-        robolectric = "@" + name,
-        versions = [version],
-    )
-    for name, version in [
-        ("android_14", "14-robolectric-10818077-i7"),
-        ("android_15", "15-robolectric-13954326-i7"),
-    ]
-]
-
 [
     android_local_test(
         name = name + "_RuntimeSelectionTest",

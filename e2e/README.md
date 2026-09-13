@@ -10,22 +10,16 @@ The root `.bazelignore` excludes them; run Bazel inside each module:
 (cd e2e/subset && bazel test //...)
 ```
 
-- `smoke`: no configuration includes every catalog runtime, even when a dependency
-  tries to supply its own configuration. `DefaultRuntimesTest` runs a real
-  `android_local_test` on every supported SDK through `Config.ALL_SDKS`.
+- `smoke`: uses the default configuration, including every catalog runtime.
+  `DefaultRuntimesTest` runs an `android_local_test` on every supported SDK
+  through `Config.ALL_SDKS`.
   Also used by BCR presubmit.
 - `subset`: selects Android 14 and 15, with a different repository alias from
   rules_android. Runs actual `android_local_test` cases on both SDKs using
   rules_android's default properties-file label, without patching rules_android.
-  Also defines independent Android 14 and Android 15 repositories, checks their
-  exact contents, and runs an Android test against each generated library and
-  properties file in the same Bazel invocation.
-- `dependency`: a fixture used by smoke and subset; its configuration must be ignored.
-
-Every consumer tests the exact runtime jar names in `android-all`'s `DefaultInfo`
-runfiles and the exact properties keys, and checks that every properties entry
-resolves to an existing jar in the test's runfiles. The subset's expected list is
-independent of the configuration, so adding or dropping a requested runtime fails.
+  Also defines independent Android 14 and Android 15 repositories and runs an
+  Android test against each generated library and properties file in the same
+  Bazel invocation.
 
 CI runs these modules on Linux and macOS with Bazel 8.7 and 9.2, alongside the
 existing default rules_android example.

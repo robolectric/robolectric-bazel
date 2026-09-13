@@ -113,7 +113,7 @@ additional runtime repositories; its no-argument behavior is unchanged.
 
 Run `bazel test //...` for repository tests. The standalone consumer modules in
 [`e2e/`](e2e/README.md) cover default and named runtime selections,
-including exact runtime assertions and unmodified `rules_android` integration.
+with Android tests using unmodified `rules_android`.
 
 ## Updating Android Versions
 

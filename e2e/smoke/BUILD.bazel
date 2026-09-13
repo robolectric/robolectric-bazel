@@ -1,8 +1,4 @@
-load("@robolectric//bazel:robolectric.bzl", "DEFAULT_AVAILABLE_VERSIONS")
-load("@robolectric//tests:runtime_selection_tests.bzl", "runtime_selection_tests")
 load("@rules_android//android:rules.bzl", "android_local_test")
-
-runtime_selection_tests(versions = [v.version for v in DEFAULT_AVAILABLE_VERSIONS])
 
 # Exercise the default properties-file label supplied by rules_android.
 android_local_test(

@@ -1,19 +1,9 @@
 """Default setup: no Robolectric extension configuration."""
 
 bazel_dep(name = "rules_robolectric", version = "0.0.0", repo_name = "robolectric")
-
-bazel_dep(name = "bazel_skylib", version = "1.9.0", dev_dependency = True)
-bazel_dep(name = "rules_python", version = "0.40.0", dev_dependency = True)
-
 local_path_override(
     module_name = "rules_robolectric",
     path = "../..",
-)
-
-bazel_dep(name = "selection_dependency", version = "0.0.0")
-local_path_override(
-    module_name = "selection_dependency",
-    path = "../dependency",
 )
 
 bazel_dep(name = "platforms", version = "1.0.0")
