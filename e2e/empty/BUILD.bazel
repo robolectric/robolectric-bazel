@@ -1,0 +1,3 @@
+load("@robolectric//tests:runtime_selection_tests.bzl", "runtime_selection_tests")
+
+runtime_selection_tests(versions = [])

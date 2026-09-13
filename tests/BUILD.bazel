@@ -1,5 +1,10 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_python//python:py_test.bzl", "py_test")
+load(":repository_setup_test.bzl", "repository_setup_test_suite")
+
+exports_files(["properties_test.py"])
+
+repository_setup_test_suite(name = "repository_setup_tests")
 
 build_test(
     name = "test",

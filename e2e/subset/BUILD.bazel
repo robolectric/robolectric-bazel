@@ -1,0 +1,26 @@
+load("@robolectric_repo//tests:runtime_selection_tests.bzl", "runtime_selection_tests")
+load("@rules_android//android:rules.bzl", "android_local_test")
+
+runtime_selection_tests(
+    robolectric = "@robolectric_repo",
+    versions = [
+        "14-robolectric-10818077-i7",
+        "15-robolectric-13954326-i7",
+    ],
+)
+
+# Leave robolectric_properties_file at rules_android's unchanged default,
+# which refers to its own @robolectric namespace, not our @robolectric_repo.
+android_local_test(
+    name = "RuntimeSelectionTest",
+    srcs = ["RuntimeSelectionTest.java"],
+    custom_package = "org.robolectric.smoke",
+    jvm_flags = ["--add-exports=java.base/jdk.internal.access=ALL-UNNAMED"],
+    test_class = "org.robolectric.smoke.RuntimeSelectionTest",
+    deps = [
+        "@maven//:junit_junit",
+        "@maven//:org_robolectric_annotations",
+        "@maven//:org_robolectric_robolectric",
+        "@robolectric_repo//bazel:android-all",
+    ],
+)

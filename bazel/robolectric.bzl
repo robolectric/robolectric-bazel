@@ -88,8 +88,40 @@ DEFAULT_AVAILABLE_VERSIONS = [
     ),
 ]
 
-def robolectric_repositories():
-    """Creates http_jar repositories for the given versions of Robolectric.
+def _robolectric_config_impl(ctx):
+    ctx.file("BUILD.bazel", "exports_files([\"versions.bzl\"])\n")
+    ctx.file("versions.bzl", "SELECTED_REPOSITORIES = %r\n" % ctx.attr.repositories)
+
+_robolectric_config = repository_rule(
+    implementation = _robolectric_config_impl,
+    attrs = {"repositories": attr.string_list()},
+)
+
+def _selected_versions(versions):
+    available = [v.version for v in DEFAULT_AVAILABLE_VERSIONS]
+    if versions == None:
+        versions = available
+    for version in versions:
+        if version not in available:
+            fail("Unknown Robolectric version %r. Available versions: %s" % (version, available))
+    return [v for v in DEFAULT_AVAILABLE_VERSIONS if v.version in versions]
+
+def robolectric_repositories(versions = None):
+    """Registers Robolectric jars and selects which ones the aggregate targets use.
+
+    Args:
+        versions: Instrumented version strings to include. None selects all defaults;
+            an empty list selects none. Existing repository names remain available.
     """
+    selected = _selected_versions(versions)
+
+    _robolectric_config(
+        name = "robolectric_config",
+        repositories = [v.name for v in selected],
+    )
+
+    # Keep existing repository labels valid; Bazel only fetches jars when used.
     for v in DEFAULT_AVAILABLE_VERSIONS:
         http_file(name = v.name, url = v.url, downloaded_file_path = "android-all-instrumented-%s.jar" % (v.version), sha256 = v.sha256)
+
+testing = struct(selected_versions = _selected_versions)
