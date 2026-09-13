@@ -1,1 +1,2 @@
 common --java_runtime_version=21
+common --repo_env=ACCEPTED_ANDROID_SDK_LICENSE_VERSION=37.0

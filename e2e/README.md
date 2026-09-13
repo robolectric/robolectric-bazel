@@ -12,11 +12,14 @@ The root `.bazelignore` excludes them; run Bazel inside each module:
 ```
 
 - `smoke`: no configuration includes every catalog runtime, even when a dependency
-  tries to supply its own configuration. Also used by BCR presubmit.
+  tries to supply its own configuration. `DefaultRuntimesTest` runs a real
+  `android_local_test` on every supported SDK through `Config.ALL_SDKS`.
+  Also used by BCR presubmit.
 - `subset`: selects Android 14 and 15, with a different repository alias from
   rules_android. Runs actual `android_local_test` cases on both SDKs using
   rules_android's default properties-file label, without patching rules_android.
 - `empty`: explicitly selects no runtimes and still builds valid empty properties.
+  It has no executable Robolectric test because no Android runtime is available.
 - `dependency`: a fixture used by smoke and subset; its configuration must be ignored.
 
 Every consumer tests the exact runtime jar names in `android-all`'s `DefaultInfo`
