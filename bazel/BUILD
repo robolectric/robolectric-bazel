@@ -20,24 +20,33 @@ package(
     for v in DEFAULT_AVAILABLE_VERSIONS
 ]
 
-[
-    alias(
-        name = name,
-        actual = "@robolectric_config//:" + name,
-        visibility = ["//visibility:public"] if name in [
-            "android-all",
-            "properties",
-            "robolectric-deps.properties",
-        ] else None,
-    )
-    for name in [
-        "android-all",
-        "android-all-jars",
-        "android-all-jars-filegroup",
-        "properties",
-        "robolectric-deps.properties",
-    ]
-]
+alias(
+    name = "android-all",
+    actual = "@robolectric_config//:android-all",
+    visibility = ["//visibility:public"],
+)
+
+alias(
+    name = "android-all-jars",
+    actual = "@robolectric_config//:android-all-jars",
+)
+
+alias(
+    name = "android-all-jars-filegroup",
+    actual = "@robolectric_config//:android-all-jars-filegroup",
+)
+
+alias(
+    name = "properties",
+    actual = "@robolectric_config//:properties",
+    visibility = ["//visibility:public"],
+)
+
+alias(
+    name = "robolectric-deps.properties",
+    actual = "@robolectric_config//:robolectric-deps.properties",
+    visibility = ["//visibility:public"],
+)
 
 py_binary(
     name = "gen-deps",
