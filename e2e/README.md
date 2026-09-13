@@ -19,7 +19,8 @@ The root `.bazelignore` excludes them; run Bazel inside each module:
   rules_android. Runs actual `android_local_test` cases on both SDKs using
   rules_android's default properties-file label, without patching rules_android.
 - `empty`: explicitly selects no runtimes and still builds valid empty properties.
-  It has no executable Robolectric test because no Android runtime is available.
+  Its `android_local_test` asserts that requesting SDK 34 fails with the specific
+  missing-runtime error, since no Android runtime is available.
 - `dependency`: a fixture used by smoke and subset; its configuration must be ignored.
 
 Every consumer tests the exact runtime jar names in `android-all`'s `DefaultInfo`
