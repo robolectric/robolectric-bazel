@@ -9,18 +9,19 @@ def _setup_impl(ctx):
     root = struct(
         is_root = True,
         tags = struct(configure = [
-            struct(versions = ctx.attr.versions)
+            struct(name = ctx.attr.repository_name, versions = ctx.attr.versions)
             for _ in range(ctx.attr.configure_count)
         ]),
     )
-    versions = extension_testing.configured_versions([root])
-    repository_testing.selected_versions(versions)
+    for versions in extension_testing.configurations([root]).values():
+        repository_testing.selected_versions(versions)
     return []
 
 _setup = rule(
     implementation = _setup_impl,
     attrs = {
         "configure_count": attr.int(default = 1),
+        "repository_name": attr.string(default = "robolectric_config"),
         "versions": attr.string_list(),
     },
 )
@@ -43,14 +44,17 @@ def repository_setup_test_suite(name):
         name: Name of the test suite.
     """
     tests = []
-    for case, count, versions, message in [
-        ("unknown_version", 1, ["unknown"], "Unknown Robolectric version"),
-        ("duplicate_configuration", 2, [], "Only one Robolectric configure tag"),
+    for case, repository_name, count, versions, message in [
+        ("unknown_version", "robolectric_config", 1, ["unknown"], "Unknown Robolectric version"),
+        ("duplicate_configuration", "robolectric_config", 2, [], "Duplicate Robolectric configuration name"),
+        ("duplicate_named_configuration", "android_14", 2, [], "Duplicate Robolectric configuration name"),
+        ("reserved_name", "org_robolectric_android_all_instrumented_14_robolectric_10818077_i7", 1, [], "Robolectric configuration name is reserved"),
     ]:
         subject = name + "_" + case
         _setup(
             name = subject,
             configure_count = count,
+            repository_name = repository_name,
             versions = versions,
             tags = ["manual"],
         )

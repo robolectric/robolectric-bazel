@@ -59,6 +59,17 @@ robolectric_repo.configure(versions = [
     "14-robolectric-10818077-i7",
 ])
 
+# Independent single-SDK setups coexist with the two-SDK default above.
+robolectric_repo.configure(
+    name = "android_14",
+    versions = ["14-robolectric-10818077-i7"],
+)
+robolectric_repo.configure(
+    name = "android_15",
+    versions = ["15-robolectric-13954326-i7"],
+)
+use_repo(robolectric_repo, "android_14", "android_15")
+
 # An excluded repository must stay unfetched, even with a warm Bazel cache.
 unavailable_runtime = use_repo_rule("@robolectric_repo//tests:unavailable_runtime.bzl", "unavailable_runtime")
 

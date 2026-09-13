@@ -24,26 +24,28 @@ _runtime_selection_test = analysistest.make(
     attrs = {"versions": attr.string_list()},
 )
 
-def runtime_selection_tests(versions, robolectric = "@robolectric"):
+def runtime_selection_tests(versions, robolectric = "@robolectric", package = "bazel", name_prefix = ""):
     """Checks buildability, exact runtime runfiles, and the dependency properties.
 
     Args:
         versions: The exact instrumented versions expected by the consumer.
-        robolectric: The consumer's apparent repository name for rules_robolectric.
+        robolectric: The apparent repository name containing the runtime targets.
+        package: Package containing the runtime targets; empty for generated repos.
+        name_prefix: Prefix distinguishing multiple selections in one consumer.
     """
-    android_all = robolectric + "//bazel:android-all"
-    properties = robolectric + "//bazel:properties"
+    android_all = robolectric + "//" + package + ":android-all"
+    properties = robolectric + "//" + package + ":properties"
     build_test(
-        name = "smoke_test",
+        name = name_prefix + "smoke_test",
         targets = [android_all, properties],
     )
     _runtime_selection_test(
-        name = "runtime_selection_test",
+        name = name_prefix + "runtime_selection_test",
         target_under_test = android_all,
         versions = versions,
     )
     py_test(
-        name = "properties_test",
+        name = name_prefix + "properties_test",
         srcs = [Label(":properties_test.py")],
         main = "properties_test.py",
         args = ["$(rootpath %s)" % properties] + versions,

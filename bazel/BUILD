@@ -1,6 +1,4 @@
-load("@robolectric_config//:versions.bzl", "SELECTED_REPOSITORIES")
 load("@rules_java//java:java_import.bzl", "java_import")
-load("@rules_java//java:java_library.bzl", "java_library")
 load("@rules_python//python:py_binary.bzl", "py_binary")
 load(":robolectric.bzl", "DEFAULT_AVAILABLE_VERSIONS")
 
@@ -22,32 +20,24 @@ package(
     for v in DEFAULT_AVAILABLE_VERSIONS
 ]
 
-_ANDROID_ALL_JARS = ["import_{}".format(name) for name in SELECTED_REPOSITORIES]
-
-java_library(
-    name = "android-all",
-    data = [":robolectric-deps.properties"] + _ANDROID_ALL_JARS,
-    visibility = ["//visibility:public"],
-)
-
-java_library(
-    name = "android-all-jars",
-    exports = _ANDROID_ALL_JARS,
-)
-
-filegroup(
-    name = "android-all-jars-filegroup",
-    srcs = _ANDROID_ALL_JARS,
-)
-
-genrule(
-    name = "properties",
-    srcs = [":android-all-jars-filegroup"],
-    outs = ["robolectric-deps.properties"],
-    cmd = "$(location :gen-deps) $(SRCS) > $@",
-    tools = [":gen-deps"],
-    visibility = ["//visibility:public"],
-)
+[
+    alias(
+        name = name,
+        actual = "@robolectric_config//:" + name,
+        visibility = ["//visibility:public"] if name in [
+            "android-all",
+            "properties",
+            "robolectric-deps.properties",
+        ] else None,
+    )
+    for name in [
+        "android-all",
+        "android-all-jars",
+        "android-all-jars-filegroup",
+        "properties",
+        "robolectric-deps.properties",
+    ]
+]
 
 py_binary(
     name = "gen-deps",

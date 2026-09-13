@@ -18,6 +18,9 @@ The root `.bazelignore` excludes them; run Bazel inside each module:
 - `subset`: selects Android 14 and 15, with a different repository alias from
   rules_android. Runs actual `android_local_test` cases on both SDKs using
   rules_android's default properties-file label, without patching rules_android.
+  Also defines independent Android 14 and Android 15 repositories, checks their
+  exact contents, and runs an Android test against each generated library and
+  properties file in the same Bazel invocation.
 - `empty`: explicitly selects no runtimes and still builds valid empty properties.
   Its `android_local_test` asserts that requesting SDK 34 fails with the specific
   missing-runtime error, since no Android runtime is available.

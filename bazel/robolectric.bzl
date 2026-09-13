@@ -89,12 +89,36 @@ DEFAULT_AVAILABLE_VERSIONS = [
 ]
 
 def _robolectric_config_impl(ctx):
-    ctx.file("BUILD.bazel", "exports_files([\"versions.bzl\"])\n")
-    ctx.file("versions.bzl", "SELECTED_REPOSITORIES = %r\n" % ctx.attr.repositories)
+    imports = []
+    properties = []
+    build = [
+        'load("@rules_java//java:java_import.bzl", "java_import")',
+        'load("@rules_java//java:java_library.bzl", "java_library")',
+        'package(default_visibility = ["//visibility:public"])',
+    ]
+    for jar, version in zip(ctx.attr.jars, ctx.attr.versions):
+        name = "import_" + version
+        imports.append(":" + name)
+        build.append("java_import(name = %r, jars = [%r])" % (name, str(jar)))
+
+        # The properties file lives at this repository's root in the runfiles tree.
+        properties.append("org.robolectric\\:android-all-instrumented\\:%s=../%s/file/android-all-instrumented-%s.jar" % (version, jar.workspace_name, version))
+    build.extend([
+        'exports_files(["robolectric-deps.properties"])',
+        'alias(name = "properties", actual = ":robolectric-deps.properties")',
+        'java_library(name = "android-all", data = [":properties"] + %r)' % imports,
+        'java_library(name = "android-all-jars", exports = %r)' % imports,
+        'filegroup(name = "android-all-jars-filegroup", srcs = %r)' % imports,
+    ])
+    ctx.file("BUILD.bazel", "\n".join(build) + "\n")
+    ctx.file("robolectric-deps.properties", "".join([line + "\n" for line in properties]))
 
 _robolectric_config = repository_rule(
     implementation = _robolectric_config_impl,
-    attrs = {"repositories": attr.string_list()},
+    attrs = {
+        "jars": attr.label_list(),
+        "versions": attr.string_list(),
+    },
 )
 
 def _selected_versions(versions):
@@ -106,19 +130,24 @@ def _selected_versions(versions):
             fail("Unknown Robolectric version %r. Available versions: %s" % (version, available))
     return [v for v in DEFAULT_AVAILABLE_VERSIONS if v.version in versions]
 
-def robolectric_repositories(versions = None):
-    """Registers Robolectric jars and selects which ones the aggregate targets use.
+def robolectric_repositories(versions = None, configurations = {}):
+    """Registers jars and generates independently selectable runtime repositories.
 
     Args:
-        versions: Instrumented version strings to include. None selects all defaults;
-            an empty list selects none. Existing repository names remain available.
+        versions: Versions for the default robolectric_config repository. None
+            selects all defaults; an empty list selects none.
+        configurations: Additional repository names mapped to version lists.
     """
-    selected = _selected_versions(versions)
-
-    _robolectric_config(
-        name = "robolectric_config",
-        repositories = [v.name for v in selected],
-    )
+    selections = dict(configurations)
+    if "robolectric_config" not in selections:
+        selections["robolectric_config"] = versions
+    for name, selected in selections.items():
+        selected = _selected_versions(selected)
+        _robolectric_config(
+            name = name,
+            jars = ["@%s//file" % v.name for v in selected],
+            versions = [v.version for v in selected],
+        )
 
     # Keep existing repository labels valid; Bazel only fetches jars when used.
     for v in DEFAULT_AVAILABLE_VERSIONS:

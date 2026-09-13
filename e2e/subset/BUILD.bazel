@@ -24,3 +24,41 @@ android_local_test(
         "@robolectric_repo//bazel:android-all",
     ],
 )
+
+# Exercise named repositories independently in the same consumer module.
+[
+    runtime_selection_tests(
+        name_prefix = name + "_",
+        package = "",
+        robolectric = "@" + name,
+        versions = [version],
+    )
+    for name, version in [
+        ("android_14", "14-robolectric-10818077-i7"),
+        ("android_15", "15-robolectric-13954326-i7"),
+    ]
+]
+
+[
+    android_local_test(
+        name = name + "_RuntimeSelectionTest",
+        srcs = ["RuntimeSelectionTest.java"],
+        custom_package = "org.robolectric.smoke",
+        jvm_flags = [
+            "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
+            "-Drobolectric.enabledSdks=" + sdk,
+        ],
+        robolectric_properties_file = "@%s//:properties" % name,
+        test_class = "org.robolectric.smoke.RuntimeSelectionTest",
+        deps = [
+            "@maven//:junit_junit",
+            "@maven//:org_robolectric_annotations",
+            "@maven//:org_robolectric_robolectric",
+            "@%s//:android-all" % name,
+        ],
+    )
+    for name, sdk in [
+        ("android_14", "34"),
+        ("android_15", "35"),
+    ]
+]
