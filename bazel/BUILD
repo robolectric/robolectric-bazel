@@ -1,5 +1,4 @@
 load("@rules_java//java:java_import.bzl", "java_import")
-load("@rules_java//java:java_library.bzl", "java_library")
 load("@rules_python//python:py_binary.bzl", "py_binary")
 load(":robolectric.bzl", "DEFAULT_AVAILABLE_VERSIONS")
 
@@ -21,30 +20,31 @@ package(
     for v in DEFAULT_AVAILABLE_VERSIONS
 ]
 
-_ANDROID_ALL_JARS = ["import_{}".format(v.name) for v in DEFAULT_AVAILABLE_VERSIONS]
-
-java_library(
+alias(
     name = "android-all",
-    data = [":robolectric-deps.properties"] + _ANDROID_ALL_JARS,
+    actual = "@robolectric_config//:android-all",
     visibility = ["//visibility:public"],
 )
 
-java_library(
+alias(
     name = "android-all-jars",
-    exports = _ANDROID_ALL_JARS,
+    actual = "@robolectric_config//:android-all-jars",
 )
 
-filegroup(
+alias(
     name = "android-all-jars-filegroup",
-    srcs = _ANDROID_ALL_JARS,
+    actual = "@robolectric_config//:android-all-jars-filegroup",
 )
 
-genrule(
+alias(
     name = "properties",
-    srcs = [":android-all-jars-filegroup"],
-    outs = ["robolectric-deps.properties"],
-    cmd = "$(location :gen-deps) $(locations :android-all-jars-filegroup) > $@",
-    tools = [":gen-deps"],
+    actual = "@robolectric_config//:properties",
+    visibility = ["//visibility:public"],
+)
+
+alias(
+    name = "robolectric-deps.properties",
+    actual = "@robolectric_config//:robolectric-deps.properties",
     visibility = ["//visibility:public"],
 )
 
