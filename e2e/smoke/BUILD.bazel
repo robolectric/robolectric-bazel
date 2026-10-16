@@ -1,0 +1,16 @@
+load("@rules_android//android:rules.bzl", "android_local_test")
+
+# Exercise the default properties-file label supplied by rules_android.
+android_local_test(
+    name = "DefaultRuntimesTest",
+    srcs = ["DefaultRuntimesTest.java"],
+    custom_package = "org.robolectric.smoke",
+    jvm_flags = ["--add-exports=java.base/jdk.internal.access=ALL-UNNAMED"],
+    test_class = "org.robolectric.smoke.DefaultRuntimesTest",
+    deps = [
+        "@maven//:junit_junit",
+        "@maven//:org_robolectric_annotations",
+        "@maven//:org_robolectric_robolectric",
+        "@robolectric//bazel:android-all",
+    ],
+)
