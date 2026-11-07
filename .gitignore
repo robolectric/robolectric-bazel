@@ -49,6 +49,7 @@ gen-external-apklibs
 # Ignore all bazel-* symlinks. There is no full list since this can change
 # based on the name of the directory bazel is cloned into.
 /bazel-*
+/e2e/*/bazel-*
 
 # Directories for the Bazel IntelliJ plugin containing the generated
 # IntelliJ project files and plugin configuration. Seperate directories are
@@ -181,6 +182,7 @@ fabric.properties
 
 # Bazel files
 MODULE.bazel.lock
+!/e2e/*/MODULE.bazel.lock
 bazel-*/
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,bazel

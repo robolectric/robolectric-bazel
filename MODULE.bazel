@@ -26,6 +26,7 @@ use_repo(
     "org_robolectric_android_all_instrumented_8_0_0_r4_robolectric_r1_i7",
     "org_robolectric_android_all_instrumented_8_1_0_robolectric_4611349_i7",
     "org_robolectric_android_all_instrumented_9_robolectric_4913185_2_i7",
+    "robolectric_config",
 )
 
 bazel_dep(name = "rules_java", version = "8.16.1")
