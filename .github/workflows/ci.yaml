@@ -28,7 +28,7 @@ jobs:
       - name: "Checkout the sources"
         uses: actions/checkout@v7
       - name: "Setup Bazel"
-        uses: bazel-contrib/setup-bazel@0.19.1
+        uses: bazel-contrib/setup-bazel@0.19.2
         with:
           bazelisk-cache: true
           cache-save: true
@@ -58,7 +58,7 @@ jobs:
       - name: "Checkout the sources"
         uses: actions/checkout@v7
       - name: "Setup Bazel"
-        uses: bazel-contrib/setup-bazel@0.19.1
+        uses: bazel-contrib/setup-bazel@0.19.2
         with:
           bazelisk-cache: true
           cache-save: true
