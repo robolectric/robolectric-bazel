@@ -10,7 +10,8 @@ projects.
 
 ## Installation
 
-Follow instructions in the release notes from the release you use:
+Install with Bzlmod (`MODULE.bazel`) by following the instructions in the release
+notes for your version:
 <https://github.com/robolectric/robolectric-bazel/releases>
 
 ## Usage

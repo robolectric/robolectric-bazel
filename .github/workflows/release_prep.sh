@@ -13,7 +13,6 @@ readonly ARCHIVE="${PREFIX}.tar.gz"
 
 # NB: configuration for 'git archive' is in /.gitattributes
 git archive --format=tar --prefix=${PREFIX}/ ${TAG} | gzip > $ARCHIVE
-SHA=$(shasum -a 256 $ARCHIVE | awk '{print $1}')
 
 # The stdout of this program will be used as the top of the release notes for this release.
 cat << EOF
@@ -37,19 +36,4 @@ maven.install(
 )
 use_repo(maven, "maven")
 \`\`\`
-
-### Workspace
-
-Add the \`robolectric\` and \`rules_jvm_external\` repositories in your WORKSPACE file:
-
-\`\`\`starlark
-http_archive(
-    name = "robolectric",
-    sha256 = "${SHA}",
-    strip_prefix = "${PREFIX}",
-    urls = ["https://github.com/robolectric/robolectric-bazel/releases/download/${TAG}/${ARCHIVE}"],
-)
 EOF
-
-awk 'f;/--SNIP--/{f=1}' examples/simple/WORKSPACE
-echo "\`\`\`"
